@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Új bejelentés</title>
+    <link rel="stylesheet" href="/frontend/styles/style.css">
+    <script type="text/javascript" src="/frontend/styles/app.js" defer></script>
+    <script type="text/javascript" src="/frontend/styles/uj_bej_valid.js" defer></script>
+    <script type="text/javascript" src="/frontend/styles/uj_bej.js" defer></script>
+
+</head>
+<body>
+    <nav id="sidebar">
+        <ul>
+            <li>
+                <span class="logo">Hibabejelentő</span>
+                <button onclick=toggleSidebar() id="toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z"/></svg>
+                </button>
+            </li>
+            <li >
+                <a href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg>
+                    <span>Rólunk</span>
+                </a>
+            </li>
+            <li>
+                <button onclick=toggleSubMenu(this) class="dropdown-btn rotate" >
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M480-280q17 0 28.5-11.5T520-320q0-17-11.5-28.5T480-360q-17 0-28.5 11.5T440-320q0 17 11.5 28.5T480-280Zm-40-160h80v-240h-80v240Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                    <span>Bejelentés</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                </button>
+                <ul class="sub-menu show">
+                    <div>
+                        <li class="active"><a href="uj_bej.html">Új bejelentés</a></li>
+                        <li><a href="kor_bej.html">Korábbi bejelentések</a></li>
+                    </div>
+                </ul>
+            </li>
+            <li>
+                <button onclick=toggleSubMenu(this) class="dropdown-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/></svg>
+                    <span>Profil</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="m480-340 180-180-57-56-123 123-123-123-57 56 180 180Zm0 260q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
+                </button>
+                <ul class="sub-menu">
+                    <div>
+                        <li ><a href="fiok_kez.html">Fiók kezelése</a></li>
+                        <li><a href="login.html">Kijelentkezés</a></li>
+                    </div>
+                </ul>
+
+            </li>
+            <li>
+                <a href="hirek.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h440l200 200v440q0 33-23.5 56.5T760-120H200Zm0-80h560v-400H600v-160H200v560Zm80-80h400v-80H280v80Zm0-320h200v-80H280v80Zm0 160h400v-80H280v80Zm-80-320v160-160 560-560Z"/></svg>
+                    <span>Hírek</span>
+                </a>
+            </li>
+            <li>
+                <a href="admin.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M680-280q25 0 42.5-17.5T740-340q0-25-17.5-42.5T680-400q-25 0-42.5 17.5T620-340q0 25 17.5 42.5T680-280Zm0 120q31 0 57-14.5t42-38.5q-22-13-47-20t-52-7q-27 0-52 7t-47 20q16 24 42 38.5t57 14.5ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v227q-19-8-39-14.5t-41-9.5v-147l-240-90-240 90v188q0 47 12.5 94t35 89.5Q310-290 342-254t71 60q11 32 29 61t41 52q-1 0-1.5.5t-1.5.5Zm200 0q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80ZM480-494Z"/></svg>
+                    <span>Admin</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="greet">Új probléma felvétele</div>
+            <form class="problemForm" id="problemForm">
+            
+            <div>
+                <!-- Bejelentő -->
+            <label for="user">Bejelentő:</label>
+            <input type="text" id="user" name="user" value="Teszt Elek (ID: 12345)" readonly><br>
+            </div>
+
+            <div>
+            <!-- Helyszín -->
+            <label for="location">Bejelentés helye:</label>
+            <select id="location" name="location" >
+                <option value="">-- Válassz helyszínt --</option>
+                <option>Épület A</option>
+                <option>Épület B</option>
+                <option>Parkoló</option>
+                <option>Labor 101</option>
+            </select><br>
+            </div>
+            <div>
+            <!-- Időpont -->
+            <label for="datetime">Időpont:</label>
+            <input type="date" id="datetime" name="datetime" max="2025-10-08" ><br>
+            </div>
+            <div>
+            <!-- Képek -->
+            <label for="images">Képek:</label>
+            <input type="file" id="images" name="images" accept="image/*" multiple><br>
+            </div>
+            <div>
+            <!-- Leírás -->
+            <label for="details">Részletes leírás:</label>
+            <textarea id="details" name="details" placeholder="Írd le részletesen a problémát..." ></textarea><br>
+            </div>
+            <button type="submit">Bejelentés elküldése</button>
+            </form>
+            <p id="error-message"></p>
+        
+    </main>
+    <script>
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        } 
+            
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("datetime").setAttribute("max", today);
+    </script>
+</body>
+</html>
