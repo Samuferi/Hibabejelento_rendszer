@@ -22,15 +22,15 @@ const db = await mysql.createPool({
 
 // 🔹 HTML oldalak kiszolgálása
 router.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '../front/login.html'));
+  res.sendFile(path.join(__dirname, '../frontend/pages/login.html'));
 });
 
 router.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, '../front/signup.html'));
+  res.sendFile(path.join(__dirname, '../frontend/pages/signup.html'));
 });
 
 router.get('/index', (req, res) => {
-  res.sendFile(path.join(__dirname, '../front/index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/pages/index.html'));
 });
 
 // 🔹 REGISZTRÁCIÓ

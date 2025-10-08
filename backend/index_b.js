@@ -37,7 +37,7 @@ router.get("/admin", authenticateToken, (req, res) => {
     if (req.user.role !== "admin") {
         return res.status(403).json({ message: "Nincs jogosultság!" });
     }
-    res.sendFile(path.join(__dirname, "../front/admin.html"));
+    res.sendFile(path.join(__dirname, "../frontend/pages/admin.html"));
 });
 
 export default router;
