@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // statikus frontend kiszolgálás
-app.use(express.static(path.join(__dirname, "../front")));
+app.use(express.static(path.join(__dirname, "../frontend")));
 
 // feltöltött fájlok elérhetővé tétele
 app.use("/uploads", express.static("uploads"));
