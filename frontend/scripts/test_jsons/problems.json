@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "user" : "Kovács Béla",
+    "location": "Budapest, Fő utca 1.",
+    "date": "2024-10-01",
+    "image": "/frontend/scripts/test_jsons/dog.jpg",
+    "details": "nem megy a lift",
+    "status": "folyamatban"
+  },
+  {
+    "id": 2,
+    "user" : "Kovács Béla",
+    "location": "Budapest, Fő utca 1.",
+    "date": "2024-10-01",
+    "image": "/frontend/scripts/test_jsons/dog.jpg",
+    "details": "nem működik a fűtés",
+    "status": "folyamatban"
+  },
+  {
+    "id": 3,
+    "user" : "Kovács Béla",
+    "location": "Budapest, Fő utca 1.",
+    "date": "2024-10-01",
+    "image": "/frontend/scripts/test_jsons/dog.jpg",
+    "details": "nem világítanak a lámpák",
+    "status": "megoldva"
+  }
+]

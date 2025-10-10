@@ -8,6 +8,8 @@
     <script type="text/javascript" src="../styles/app.js" defer></script>
     <script type="text/javascript" src="../styles/uj_munkatars_valid.js" defer></script>
     <script type="text/javascript" src="../styles/uj_munkatars.js" defer></script>
+    <script type="text/javascript" src="../scripts/osszes_problema.js" defer></script>
+    <script type="text/javascript" src="../scripts/employees.js" defer></script>
 </head>
 <body>
     <nav id="sidebar">
@@ -80,34 +82,13 @@
     <main>
         <div class="container">
             <div class="greet">Munkatársak</div>
-            <table id="employeesTable">
-                <tr>
-                    <th>Felhasználónév</th>
-                    <th>Email-cím</th>
-                    <th>Státusz</th>
-                </tr>
-                <tr>
-                    <td>Név</td>
-                    <td>email@cím.hu</td>
-                    <td>admin</td>
-                </tr>
-                <tr>
-                    <td>Név</td>
-                    <td>email@cím.hu</td>
-                    <td>munkatárs</td>
-                </tr>
-                <tr>
-                    <td>Név</td>
-                    <td>email@cím.hu</td>
-                    <td>munkatárs</td>
-                </tr>
-            </table>
+            <table id="employeesTable"></table>
         <div id="employees"></div>
         </div>
 
         <div class="container">
         <h2>Összes bejelentés</h2>
-        <div id="reports"></div>
+        <div id="problems-container"></div>
         </div>
         <div>
             <form class="problemForm" id="problemForm"><div class="greet">Új munkatárs felvétele </div>
