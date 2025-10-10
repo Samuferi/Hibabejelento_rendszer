@@ -6,7 +6,7 @@
     "date": "2024-10-01",
     "image": "/frontend/scripts/test_jsons/dog.jpg",
     "details": "nem megy a lift",
-    "status": "folyamatban"
+    "status": "kiosztva"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "date": "2024-10-01",
     "image": "/frontend/scripts/test_jsons/dog.jpg",
     "details": "nem működik a fűtés",
-    "status": "folyamatban"
+    "status": "feldolgozatlan"
   },
   {
     "id": 3,

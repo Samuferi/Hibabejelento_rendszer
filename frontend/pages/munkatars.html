@@ -6,6 +6,7 @@
     <title>Fiók kezelése</title>
     <link rel="stylesheet" href="../styles/style.css">
     <script type="text/javascript" src="../styles/app.js" defer></script>
+    <script type="text/javascript" src="../scripts/munkatars.js" defer></script>
 </head>
 <body>
     <nav id="sidebar">
@@ -77,23 +78,18 @@
     </nav>
     <main>
         <div class="container">
-            <h2>Üdvözlöm, munkatárs</h2>
+            <h2>Üdvözlöm, Alkalmazott</h2>
             <p>Alább kezelheti az új hibabejelentéseket, illetve megtekintheti a korábban elvégzett problémákat.</p>
         </div>
-        <div id="problems-container">
-            <div class="container">
-                <h3>Új hibabejelentések</h3>
-                <div class="problems-list">
-                    <p>Nincs új hibabejelentés.</p>
-                </div>
-            </div>
-            <div class="container">
-                <h3>Korábbi hibabejelentések</h3>
-                <div class="problems-list">
-                    <p>Nincs korábbi hibabejelentés.</p>
-                </div>
-            </div>
-
+        <div class="container">
+            <h2>Új bejelentések</h2>
+            <div class="problems-container" id="new-problems-container"></div>
+            
+        </div>
+        <div class="container">
+            <h2>Megoldott bejelentések</h2>
+            
+            <div class="problems-container" id="prev-problems-container"></div>
         </div>
         
     </main>
