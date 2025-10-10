@@ -20,13 +20,42 @@ function getProblemFormErrors(locationVal, dateTimeVal, descriptionVal){
 
 // 🔹 Submit listener
 if(form){
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async (e) => {
         let errors = [];
         errors = getProblemFormErrors(location.value, datetime.value, description.value);
 
         if(errors.length > 0){
             e.preventDefault();
             errorMessage.innerText = errors.join(" ");
+            return;
+        }
+        e.preventDefault();
+
+        const formData = {
+        user: user.value,
+        location: location.value,
+        datetime: datetime.value,
+        images: images.value,
+        details: description.value,
+        };
+
+        try {
+        const res = await fetch("/api/problems", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            alert("✅ Sikeres problémafelvétel!");
+            document.getElementById("problemForm").reset();
+        } else {
+            alert("❌ Hiba: " + data.message);
+        }
+        } catch (err) {
+        console.error(err);
+        alert("⚠️ Hálózati hiba!");
         }
     });
 }
