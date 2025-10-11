@@ -69,7 +69,7 @@ if(form){
     });
 }
 
-// 🔹 Inputok figyelése hibajelzés eltávolítására
+// 🔹 Inputok figyelése hibajelzés eltávolítására:
 const allInputs = [location, datetime, description].filter(input => input != null);
 allInputs.forEach(input => {
     input.addEventListener("input", () => {
