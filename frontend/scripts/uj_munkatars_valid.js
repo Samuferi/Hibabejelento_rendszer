@@ -31,6 +31,12 @@ if(form){
         }
         e.preventDefault();
 
+        const token = localStorage.getItem("token"); // 🔹 Token lekérése
+        if (!token) {
+            alert("⚠️ Nem vagy bejelentkezve. Jelentkezz be újra!");
+            return;
+        }
+
         const formData = {
         username: username.value,
         email: email.value,
@@ -41,7 +47,10 @@ if(form){
         try {
         const res = await fetch("/api/team", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+             },
             body: JSON.stringify(formData),
         });
 

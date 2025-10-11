@@ -2,6 +2,23 @@
 
 async function loadUserProps() {
     try {
+        /*const token = localStorage.getItem("token"); // 🔸 Token lekérése
+        if (!token) {
+            alert("⚠️ Nem vagy bejelentkezve!");
+            return;
+        }
+            const res = await fetch("/api/problems", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+            "Content-Type": "application/json"
+        }
+        }); 
+        if (!res.ok) {
+            throw new Error("Hiba a problémák lekérésében!");
+        }
+        const problems = await res.json();*/
+        
         const res = await fetch("/frontend/scripts/test_jsons/user.json"); // Node.js backend endpoint
         const user = await res.json();
 
@@ -59,6 +76,12 @@ if(form){
 
         e.preventDefault();
 
+        const token = localStorage.getItem("token"); // 🔹 Token lekérése
+        if (!token) {
+            alert("⚠️ Nem vagy bejelentkezve. Jelentkezz be újra!");
+            return;
+        }
+
         const formData = {
         user: username?.value,
         email: email?.value,
@@ -70,13 +93,16 @@ if(form){
         try {
         const res = await fetch("/api/newUserData", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+             },
             body: JSON.stringify(formData),
         });
 
         const data = await res.json();
         if (res.ok) {
-            alert("✅ Sikeres problémafelvétel!");
+            alert("✅ Sikeres változtatás!");
             document.getElementById("problemForm").reset();
         } else {
             alert("❌ Hiba: " + data.message);
