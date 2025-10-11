@@ -20,14 +20,44 @@ function getProblemFormErrors(usernameVal, emailVal, passwordVal, statusVal){
 
 // 🔹 Submit listener
 if(form){
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async (e) => {
         let errors = [];
         errors = getProblemFormErrors(username.value, email.value, password.value, status.value);
 
         if(errors.length > 0){
             e.preventDefault();
             errorMessage.innerText = errors.join(" ");
+            return;
         }
+        e.preventDefault();
+
+        const formData = {
+        username: username.value,
+        email: email.value,
+        password: password.value,
+        status: status.value,
+        };
+
+        try {
+        const res = await fetch("/api/team", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            alert("✅ Sikeres tagfelvétel!");
+            document.getElementById("problemForm").reset();
+        } else {
+            alert("❌ Hiba: " + data.message);
+        }
+        } catch (err) {
+        console.error(err);
+        alert("⚠️ Hálózati hiba!");
+        }
+    
+
     });
 }
 

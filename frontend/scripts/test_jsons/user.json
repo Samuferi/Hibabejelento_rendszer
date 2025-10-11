@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "name": "Kovács János",
+        "email": "xyz@gmail.com",
+        "phone": "06301234567",
+        "password": "password123"
+    }
+]

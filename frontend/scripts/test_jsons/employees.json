@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Kovács János",
+        "email": "xyz@gmail.com",
+        "position": "főnök"
+    },
+    {
+        "id": 2,
+        "name": "Kovács Kornél",
+        "email": "xyz@gmail.com",
+        "position": "alkalmazott"
+    },
+    {
+        "id": 3,
+        "name": "Kovács István",
+        "email": "xyz@gmail.com",
+        "position": "alkalmazott"
+    },
+    {
+        "id": 4,
+        "name": "Kovács Bendegúz",
+        "email": "xyz@gmail.com",
+        "position": "admin"
+    }
+]
