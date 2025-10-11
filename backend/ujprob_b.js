@@ -88,5 +88,4 @@ app.post("/api/uj-problema", verifyToken, upload.single("kep"), async (req, res)
   }
 });
 
-// -------------------- SZERVER INDÍTÁS --------------------
-app.listen(3000, () => console.log("✅ Backend fut a 3000-es porton"));
+
