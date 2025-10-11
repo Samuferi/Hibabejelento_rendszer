@@ -20,21 +20,10 @@ const db = await mysql.createPool({
 
 
 
-// 🔹 HTML oldalak kiszolgálása
-router.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/pages/login.html'));
-});
 
-router.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/pages/signup.html'));
-});
-
-router.get('/index', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/pages/index.html'));
-});
 
 // 🔹 REGISZTRÁCIÓ
-router.post('/api/register', async (req, res) => {
+router.post('/register', async (req, res) => {
   console.log("Kapott adatok:", req.body);
   try {
     const { lastname, firstname, email, "post-number": irsz, town: telepules, address: cim, "phone-number": telefon, password } = req.body;
@@ -63,7 +52,7 @@ router.post('/api/register', async (req, res) => {
 });
 
 // 🔹 BEJELENTKEZÉS
-router.post('/api/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
 

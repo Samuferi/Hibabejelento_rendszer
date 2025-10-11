@@ -1,12 +1,12 @@
 async function loadProblems() {
         try {
 
-            /*const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); // 🔸 Token lekérése
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
             }
-             const res = await fetch("/api/problems", {
+            const res = await fetch("/api/problems", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
@@ -16,10 +16,10 @@ async function loadProblems() {
             if (!res.ok) {
                 throw new Error("Hiba a problémák lekérésében!");
             }
-            const problems = await res.json();*/
-
-            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
             const problems = await res.json();
+
+            /*const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+            const problems = await res.json();*/
 
             const container = document.getElementById("problems-container");
             container.innerHTML = ""; // töröljük a régit
