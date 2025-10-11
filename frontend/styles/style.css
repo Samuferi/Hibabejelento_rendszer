@@ -17,7 +17,7 @@ html{
 body{
     min-height: 100vh;
     min-height: 100dvh;
-    background:linear-gradient(180deg,#19da93 0%, #ffffff 100%);
+    background-image: url('main_bg.jpg');
     color: var(--text-clr);
     display:grid;
     grid-template-columns: auto 1fr;
