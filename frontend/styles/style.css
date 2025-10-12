@@ -297,13 +297,35 @@ h2{
     width: 100%;
     border-collapse: collapse;
     margin: 12px 0 12px;
-    background-color: #558179;
+    background: transparent;
     color: white;
     overflow: hidden;
+    border: none;
     
 }
+#employeesTable tr:first-child th {
+  border-top: none;
+  border-left: none;
+  border-bottom: 4px solid white;
+  border-right: 4px solid white;
+  
+}
+#employeesTable tr:last-child td {
+  border-bottom: none;
+}
+#employeesTable tr td:first-child {
+  border-left: none;
+}
+
+#employeesTable tr td:last-child {
+  border-right: none;
+}
+#employeesTable tr th:last-child {
+  border-right: none;
+}
+
 #employeesTable th, #employeesTable td {
-    border: 1px solid var(--line-clr);
+    border: 2px solid white;
     padding: 8px;
     text-align: left;
 }
