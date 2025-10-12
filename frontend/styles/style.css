@@ -161,6 +161,11 @@ body{
 }
 main{
     padding: min(30px,7%);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     
 }
 main p{
@@ -181,7 +186,7 @@ main p{
     gap:14px; 
     margin-top:18px
 }
-.greet{font-size:40px; font-weight:1000; line-height:2.0; margin:0; text-align: center; }
+.greet{font-size:40px; font-weight:1000; line-height:2.0; margin:0; text-align: center; color: white; }
 .greet-sub{color:var(--muted); font: size 20px; font-weight: 600; margin-bottom: 12px;}
 .card h3{margin:0 0 6px; font-size:15px}
 .card p{margin:0; font-size:13px; color:var(--muted)}
@@ -408,5 +413,191 @@ form > div{
     color: white;
 }
 #error-message{
-    color: #d32f2f;
+    color: #f90000;
+    text-align: center;
+    font-weight: 600;
+}
+/* új form rész */
+.wrapper{
+    width: 420px;
+    background: transparent;
+    color: white;
+    border-radius: 12px;
+    padding:  30px 40px;
+    border: 2px solid var(--line-clr);
+    backdrop-filter: blur(20px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.37); ;
+}
+
+.wrapper h1{
+    text-align: center;
+    font-size: 36px;
+    margin: 0px 0 30px 0;
+}
+.wrapper .input-box{
+    width: 100%;
+    height: 40px;
+    margin: 0 0 60px 0;
+}
+
+.input-box input{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border: 2px solid var(--line-clr);
+    border-radius: 40px;
+    background: transparent;
+    font-size: 16px;
+    color:#ffffff;
+    padding: 20px 45px 20px 20px;
+    
+
+    
+}
+.input-box input[readonly]{
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+}
+.input-box label{
+    position: absolute;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    pointer-events: none;
+    transition: .5s;
+    transform: translateY(-50%);
+    left: 20px;
+}
+.input-box textarea{
+    width: 100%;
+    height: 150px;
+    border: none;
+    outline: none;
+    border: 2px solid var(--line-clr);
+    border-radius: 20px;
+    background: transparent;
+    font-size: 16px;
+    color:#ffffff;
+    padding: 20px 45px 20px 20px;
+    font-family: inherit;
+    resize: none;
+}
+.input-box select{
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    border: 2px solid var(--line-clr);
+    border-radius: 40px;
+    background: transparent;
+    font-size: 16px;
+    color:#ffffff;
+    padding: 20px 45px 20px 20px;
+
+    
+}
+.input-box select option{
+    background: var(--secondary-text-clr);
+}
+.input-box input[type="file"]::file-selector-button{
+    border: none;
+    outline: none;
+    height: 100%;
+    background: var(--accent-clr);
+    color: #ffffff;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 0 20px;
+    margin-right: 10px;
+    
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+.wrapper .remember-forgot {
+    font-size: 14.5px;
+    display: flex;
+    justify-content: space-between;
+    margin: -15px 0 15px;
+}
+.remember-forgot label input {
+    accent-color: white;
+    margin-right: 3px;
+}
+.remember-forgot a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 40px;
+    background: var(--accent-clr);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.37); 
+    margin: 100px 0 0px;
+}
+.wrapper .btn:hover {
+    background: #13a978;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link p a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
+div.incorrect label{
+    color: #ffffff;
+}
+div.incorrect input{
+    border-color: #f06272;
+    background-color: #f06272;
+    color: white;
+    ::placeholder {
+        color: white;
+        opacity: 1;
+    }
+}
+div.incorrect input::placeholder,textarea::placeholder,select::placeholder {
+        color: white;
+        opacity: 1;
+    }
+div.incorrect textarea{
+    border-color: #f06272;
+    background-color: #f06272;
+    color: white;
+}
+div.incorrect select{
+    border-color: #f06272;
+    background-color: #f06272;
+    color: white;
 }
