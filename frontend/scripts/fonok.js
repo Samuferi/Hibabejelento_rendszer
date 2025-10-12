@@ -25,7 +25,7 @@ async function loadProblems() {
 
             problems.forEach(problem => {
             const div = document.createElement("div");
-            div.classList.add("container");
+            div.classList.add("wrapper-inner-2");
 
             div.innerHTML = `
                 <h2>${problem.user}</h2>
@@ -33,12 +33,13 @@ async function loadProblems() {
                 <p><strong>Dátum:</strong> ${problem.date}</p>
                 <p><strong>Részletek:</strong> ${problem.details}</p>
                 <form id="worker-form-${problem.id}">
+                <div class="input-box">
                 <select name="worker" id="worker-${problem.id}">
                     <option disabled selected>Válasszon alkalmazottat</option>
                     <option value="Kovács Zalán" >Kovács Zalán</option>
                     <option value="Kovács Tibor" >Kovács Tibor</option>
-                </select>
-                <button type="submit" data-id="${problem.id}">Kiküldés</button>
+                </select></div>
+                <button type="submit" data-id="${problem.id}" class="btn">Kiküldés</button>
                 </form>
                 
             `;

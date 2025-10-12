@@ -81,14 +81,14 @@
     </nav>
     <main>
         <div class="wrapper">
-            <div class="greet">Munkatársak</div>
+            <h1>Munkatársak</h1>
             <table id="employeesTable"></table>
             <div id="employees"></div>
         </div>
 
-        <div class="container">
-        <h2>Összes bejelentés</h2>
-        <div id="problems-container"></div>
+        <div class="wrapper-2">
+        <h1>Összes bejelentés</h1>
+        <div id="problems-container" class="wrapper-inner"></div>
         </div>
         <div class="wrapper">
             <form id="problemForm"><h1>Új munkatárs felvétele </h1>
@@ -99,8 +99,9 @@
                 <button type="submit" class="btn">Felvétel</button>
 
             </form>
+            <p id="error-message"></p>
         </div>
-        <p id="error-message"></p>
+        
         <!--
         <script>
         async function loadEmployees() {

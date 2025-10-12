@@ -26,7 +26,7 @@ async function loadProblems() {
 
             problems.forEach(problem => {
             const div = document.createElement("div");
-            div.classList.add("container");
+            div.classList.add("wrapper-inner-2");
 
             div.innerHTML = `
                 <h2>${problem.user}</h2>

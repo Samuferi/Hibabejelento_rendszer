@@ -25,7 +25,7 @@ async function loadNewProblems() {
 
             problems.forEach(problem => {
             const div = document.createElement("div");
-            div.classList.add("container");
+            div.classList.add("wrapper-inner-2");
 
             div.innerHTML = `
                 <h2>${problem.user}</h2>
@@ -34,17 +34,17 @@ async function loadNewProblems() {
                 <img src="${problem.image}" alt="Hiba képe" style="max-width: 200px; max-height: 200px;">
                 <p><strong>Részletek:</strong> ${problem.details}</p>
                 <p><strong>Állapot:</strong> ${problem.status}</p>
-                <form class="problemForm">
-                    <div><label for="status-${problem.id}">Állapot frissítése:</label></div>
-                    <div><select id="status-${problem.id}" name="status">
+                <form>
+                    
+                    <div class="input-box"><label for="status-${problem.id}">Állapot frissítése:</label><select id="status-${problem.id}" name="status">
                         <option value="" disabled>--Válassz--</option>
                         <option value="feldolgozatlan" ${problem.status === "feldolgozatlan" ? "selected" : ""}>Feldolgozatlan</option>
                         <option value="kiosztva" ${problem.status === "kiosztva" ? "selected" : ""}>Kiosztva</option>
                         <option value="megoldva" ${problem.status === "megoldva" ? "selected" : ""}>Megoldva</option>
                         <option value="elutasítva" ${problem.status === "elutasítva" ? "selected" : ""}>Elutasítva</option>
                     </select></div>
-                    <div><textarea id="comment-${problem.id}" name="comment" rows="3" placeholder="Megjegyzés..."></textarea></div>
-                    <div><button type="submit" data-id="${problem.id}">Frissít</button></div>
+                    <div class="input-box"><textarea id="comment-${problem.id}" name="comment" rows="3" placeholder="Megjegyzés..."></textarea></div>
+                    <button type="submit" data-id="${problem.id}" class="btn">Frissít</button>
                 </form>
 
                 
@@ -85,7 +85,7 @@ async function loadPrevProblems() {
 
         problems.forEach(problem => {
         const div = document.createElement("div");
-        div.classList.add("container");
+        div.classList.add("wrapper-inner-2");
 
         div.innerHTML = `
             <h2>${problem.user}</h2>
