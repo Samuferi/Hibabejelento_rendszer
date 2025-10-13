@@ -38,7 +38,7 @@ if(form){
         }
 
         const formData = {
-        /* user: user.value, */
+        user: user.value,
         location: location.value,
         datetime: datetime.value,
         images: images.value,

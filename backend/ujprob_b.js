@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 import mysql from "mysql2/promise";
 import multer from "multer";
 
+const router = express.Router();
+
 // -------------------- MULTER KONFIG --------------------
 // ide kerülnek majd a feltöltött képek (pl. /uploads mappába)
 const storage = multer.diskStorage({
@@ -19,11 +21,12 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // -------------------- ADATBÁZIS --------------------
-const pool = mysql.createPool({
-  host: "localhost",         // 👉 a te adatbázisod host-ja (pl. localhost)
-  user: "root",              // 👉 a saját MySQL felhasználód
-  password: "asd123",  // 👉 a saját MySQL jelszavad
-  database: "varosihibabejelento", // 👉 az adatbázis neve
+const pool = await mysql.createPool({
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 'Ocsi_2018',
+  database: 'hibabejelento'
 });
 
 // -------------------- APP ALAP --------------------
@@ -88,4 +91,4 @@ app.post("/api/uj-problema", verifyToken, upload.single("kep"), async (req, res)
   }
 });
 
-
+export default router;

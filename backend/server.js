@@ -53,7 +53,7 @@ app.get("/problems", (req, res) => {
 });
 
 app.get("/newproblems", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/pages/uj_prob.html"));
+  res.sendFile(path.join(__dirname, "../frontend/pages/uj_bej.html"));
 });
 
 // szerver indítása
