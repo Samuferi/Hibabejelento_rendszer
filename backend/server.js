@@ -29,6 +29,7 @@ app.use("/api", loginRoutes);
 app.use("/api/problems", problemRoutes);
 // index route-ok
 app.use("/index", indexRoutes);
+app.use("/api/newproblems", newproblemRoutes);
 
 
 // statikus frontend kiszolgálás
@@ -51,6 +52,9 @@ app.get("/problems", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/pages/kor_bej.html"));
 });
 
+app.get("/newproblems", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/pages/uj_prob.html"));
+});
 
 // szerver indítása
 app.listen(3000, () => {
