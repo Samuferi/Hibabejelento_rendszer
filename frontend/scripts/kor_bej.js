@@ -28,10 +28,20 @@ async function loadProblems() {
             const div = document.createElement("div");
             div.classList.add("container");
 
+            const date = new Date(problem.idopont);
+            const formattedDate = date.toLocaleString("hu-HU", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit"
+            });
+
+
             div.innerHTML = `
                 <h2>${problem.user}</h2>
                 <p><strong>Helyszín:</strong> ${problem.helyszin}</p>
-                <p><strong>Dátum:</strong> ${problem.idopont}</p>
+                <p><strong>Dátum:</strong> ${formattedDate}</p>
                 <img src="${problem.kep_url}" alt="Probléma képe" style="max-width: 200px; height: auto;">
                 <p>${problem.leiras}</p>
                 <p><strong>Állapot:</strong> ${problem.status}</p>
