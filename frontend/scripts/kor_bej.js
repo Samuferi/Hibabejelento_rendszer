@@ -30,10 +30,10 @@ async function loadProblems() {
 
             div.innerHTML = `
                 <h2>${problem.user}</h2>
-                <p><strong>Helyszín:</strong> ${problem.location}</p>
-                <p><strong>Dátum:</strong> ${problem.date}</p>
-                <img src="${problem.image}" alt="Probléma képe" style="max-width: 200px; height: auto;">
-                <p>${problem.details}</p>
+                <p><strong>Helyszín:</strong> ${problem.helyszin}</p>
+                <p><strong>Dátum:</strong> ${problem.idopont}</p>
+                <img src="${problem.kep_url}" alt="Probléma képe" style="max-width: 200px; height: auto;">
+                <p>${problem.leiras}</p>
                 <p><strong>Állapot:</strong> ${problem.status}</p>
 
                 

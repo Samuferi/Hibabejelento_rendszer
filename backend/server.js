@@ -20,6 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // feltöltött fájlok elérhetővé tétele
 app.use("/uploads", express.static("uploads"));
+console.log("Uploads path:", path.join(__dirname, "uploads"));
+
 
 // login route-ok
 app.use("/api", loginRoutes);
