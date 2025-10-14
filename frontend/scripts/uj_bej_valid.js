@@ -38,7 +38,7 @@ if(form){
         }
 
         const formData = {
-        /* user: user.value, */
+        user: user.value,
         location: location.value,
         datetime: datetime.value,
         images: images.value,
@@ -46,7 +46,7 @@ if(form){
         };
 
         try {
-        const res = await fetch("/api/problems", {
+        const res = await fetch("/api/newproblems", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
