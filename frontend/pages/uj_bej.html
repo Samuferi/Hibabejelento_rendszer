@@ -6,7 +6,8 @@
     <title>Új bejelentés</title>
     <link rel="stylesheet" href="../styles/style.css">
     <script type="text/javascript" src="../styles/app.js" defer></script>
-    <script type="text/javascript" src="../scripts/uj_bej_valid.js" defer></script>
+    <script type="module" src="../scripts/uj_bej_valid.js" defer></script>
+    <script type="module" src="../scripts/role.js" defer></script>
     <!-- <script type="text/javascript" src="../styles/uj_bej.js" defer></script> -->
 
 </head>
@@ -82,43 +83,46 @@
     </nav>
     <main>
         <div class="greet">Új probléma felvétele</div>
-            <form class="problemForm" id="problemForm">
+        <div class="wrapper">
+            <h1>Bejelentés</h1>
+            <form  id="problemForm">
             
-            <div>
+            <div class="input-box">
                 <!-- Bejelentő -->
-            <label for="user">Bejelentő:</label>
-            <input type="text" id="user" name="user" value="Teszt Elek (ID: 12345)" readonly><br>
+            
+            <input type="text" id="user" name="user" value="" readonly><br>
             </div>
 
-            <div>
+            <div class="input-box">
             <!-- Helyszín -->
             <label for="location">Bejelentés helye:</label>
             <select id="location" name="location" >
-                <option value="">-- Válassz helyszínt --</option>
+                <option value="" disabled selected>-- Válassz helyszínt --</option>
                 <option>Épület A</option>
                 <option>Épület B</option>
                 <option>Parkoló</option>
                 <option>Labor 101</option>
-            </select><br>
+            </select>
             </div>
-            <div>
+            <div class="input-box">
             <!-- Időpont -->
             <label for="datetime">Időpont:</label>
             <input type="date" id="datetime" name="datetime" max="2025-10-08" ><br>
             </div>
-            <div>
+            <div class="input-box">
             <!-- Képek -->
             <label for="images">Képek:</label>
             <input type="file" id="images" name="images" accept="image/*" multiple><br>
             </div>
-            <div>
+            <div class="input-box">
             <!-- Leírás -->
             <label for="details">Részletes leírás:</label>
             <textarea id="details" name="details" placeholder="Írd le részletesen a problémát..." ></textarea><br>
             </div>
-            <button type="submit">Bejelentés elküldése</button>
+            <button type="submit" class="btn">Bejelentés elküldése</button>
             </form>
             <p id="error-message"></p>
+        </div>
         
     </main>
     <script>
@@ -137,6 +141,11 @@
             
         today = yyyy + '-' + mm + '-' + dd;
         document.getElementById("datetime").setAttribute("max", today);
+    </script>
+    <script>
+        let sur = localStorage.getItem("usersur");
+        let fir = localStorage.getItem("userfir");
+        document.getElementById("user").value = sur + " " + fir;
     </script>
 </body>
 </html>

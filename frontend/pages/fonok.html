@@ -6,7 +6,8 @@
     <title>Fiók kezelése</title>
     <link rel="stylesheet" href="../styles/style.css">
     <script type="text/javascript" src="../styles/app.js" defer></script>
-    <script type="text/javascript" src="../scripts/fonok.js" defer></script>
+    <script type="module" src="../scripts/fonok.js" defer></script>
+    <script type="module" src="../scripts/role.js" defer></script>
 </head>
 <body>
     <nav id="sidebar">
@@ -77,12 +78,14 @@
         </ul>
     </nav>
     <main>
-        <div class="container">
-            <h2>Üdvözlöm, Főnök</h2>
+        <div class="wrapper-2">
+            <h1>Üdvözlöm, Főnök</h1>
             <p>Alább oszthatja ki az új hibabejelentéseket az alkalmazottak között.</p>
         </div>
-        <div id="problems-container"></div>
-        
+        <div class="wrapper-2">
+            <h1>Új bejelentések kiosztása</h1>
+        <div id="problems-container" class="wrapper-inner"></div>
+        </div>
     </main>
 </body>
 </html>
