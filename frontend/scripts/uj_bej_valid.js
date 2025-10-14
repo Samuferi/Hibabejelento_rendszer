@@ -19,14 +19,14 @@ async function loadUserName() {
         }
         const problems = await res.json();*/
         
-        const res = await fetch("/frontend/scripts/test_jsons/user.json"); // Node.js backend endpoint
-        const user = await res.json();
-
+        /* const res = await fetch("/frontend/scripts/test_jsons/user.json"); // Node.js backend endpoint
+        const user = await res.json(); */
+        const user=JSON.parse(localStorage.getItem("user"));
         const form = document.getElementById("problemForm");
         const userNameInput = document.getElementById("user");
         const userIdInput = document.getElementById("userid");
-        userNameInput.value = user[0].lname + " " + user[0].fname;
-        userIdInput.value = user[0].id;
+        userNameInput.value = user.vezeteknev + " " + user.keresztnev;
+        userIdInput.value = user.user_id;
 
     } catch (err) {
         console.error("Hiba a betöltésnél:", err);
