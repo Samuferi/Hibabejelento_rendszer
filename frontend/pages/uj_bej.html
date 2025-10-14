@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/style.css">
     <script type="text/javascript" src="../styles/app.js" defer></script>
     <script type="module" src="../scripts/uj_bej_valid.js" defer></script>
+    <script type="module" src="../scripts/role.js" defer></script>
     <!-- <script type="text/javascript" src="../styles/uj_bej.js" defer></script> -->
 
 </head>
@@ -89,7 +90,7 @@
             <div class="input-box">
                 <!-- Bejelentő -->
             
-            <input type="text" id="user" name="user" value="Teszt Elek (ID: 12345)" readonly><br>
+            <input type="text" id="user" name="user" value="" readonly><br>
             </div>
 
             <div class="input-box">
@@ -140,6 +141,11 @@
             
         today = yyyy + '-' + mm + '-' + dd;
         document.getElementById("datetime").setAttribute("max", today);
+    </script>
+    <script>
+        let sur = localStorage.getItem("usersur");
+        let fir = localStorage.getItem("userfir");
+        document.getElementById("user").value = sur + " " + fir;
     </script>
 </body>
 </html>
