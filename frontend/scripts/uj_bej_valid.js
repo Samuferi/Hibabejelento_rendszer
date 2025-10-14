@@ -1,3 +1,37 @@
+
+
+async function loadUserName() {
+    try {
+        /*const token = localStorage.getItem("token"); // 🔸 Token lekérése
+        if (!token) {
+            alert("⚠️ Nem vagy bejelentkezve!");
+            return;
+        }
+            const res = await fetch("/api/problems", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+            "Content-Type": "application/json"
+        }
+        }); 
+        if (!res.ok) {
+            throw new Error("Hiba a problémák lekérésében!");
+        }
+        const problems = await res.json();*/
+        
+        const res = await fetch("/frontend/scripts/test_jsons/user.json"); // Node.js backend endpoint
+        const user = await res.json();
+
+        const form = document.getElementById("problemForm");
+        const userNameInput = document.getElementById("user");
+        const userIdInput = document.getElementById("userid");
+        userNameInput.value = user[0].lname + " " + user[0].fname;
+        userIdInput.value = user[0].id;
+
+    } catch (err) {
+        console.error("Hiba a betöltésnél:", err);
+    }
+}
 window.addEventListener("DOMContentLoaded", () => {
 // 🔹 Változók a form elemeihez
 const form = document.getElementById("problemForm"); // signup vagy login form
@@ -7,7 +41,7 @@ const datetime=document.getElementById("datetime");
 const images=document.getElementById("images");
 const description=document.getElementById("details");
 const errorMessage = document.getElementById("error-message");
-
+const id=document.getElementById("userid").value;
 // 🔹 Hibakereső függvények
 function getProblemFormErrors(locationVal, dateTimeVal, descriptionVal){
     let errors = [];
@@ -38,7 +72,7 @@ if(form){
         }
 
         const formData = {
-        user: user.value,
+        id: id,
         location: location.value,
         datetime: datetime.value,
         images: images.value,
@@ -80,3 +114,4 @@ allInputs.forEach(input => {
     });
 })
 });
+loadUserName();
