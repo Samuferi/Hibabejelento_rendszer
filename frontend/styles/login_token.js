@@ -31,8 +31,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       // 🔹 Token és felhasználó adatok tárolása
       localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-
+      localStorage.setItem('usersur', JSON.stringify(data.usersur));
+      localStorage.setItem('userfir', JSON.stringify(data.userfir));
       // 🔹 Átirányítás az index.html-re
       window.location.href = '/index';
     } catch (err) {
