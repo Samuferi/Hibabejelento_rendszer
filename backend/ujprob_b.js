@@ -53,12 +53,16 @@ function verifyToken(req, res, next) {
 
 // -------------------- ÚJ PROBLÉMA FELVÉTEL --------------------
 // fájlfeltöltés + token ellenőrzés
-app.post("/", verifyToken, upload.single("kep"), async (req, res) => {
-  const { helyszin, leiras } = req.body;
+router.post("/", verifyToken, upload.single("images"), async (req, res) => {
+  console.log("📸 Fájl:", req.file);
+  console.log("📋 Body:", req.body);
+  
+  const { location, details } = req.body;
   const user_id = req.user.user_id; // tokenből jön
-  const kep_fajl = req.file ? req.file.path : null;
+  const kep_fajl = req.file ? `/uploads/${req.file.filename}` : null;
 
-  if (!helyszin || !leiras) {
+
+  if (!location || !details) {
     return res.status(400).json({ error: "Hiányzó adatok!" });
   }
 
@@ -68,7 +72,7 @@ app.post("/", verifyToken, upload.single("kep"), async (req, res) => {
     const [result] = await conn.execute(
       `INSERT INTO problems (helyszin, leiras, kep_url, status)
        VALUES (?, ?, ?, 'Felvéve')`,
-      [helyszin, leiras, kep_fajl]
+      [location, details, kep_fajl]
     );
 
     const problem_id = result.insertId;

@@ -1,3 +1,37 @@
+
+
+async function loadUserName() {
+    try {
+        /*const token = localStorage.getItem("token"); // 🔸 Token lekérése
+        if (!token) {
+            alert("⚠️ Nem vagy bejelentkezve!");
+            return;
+        }
+            const res = await fetch("/api/problems", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+            "Content-Type": "application/json"
+        }
+        }); 
+        if (!res.ok) {
+            throw new Error("Hiba a problémák lekérésében!");
+        }
+        const problems = await res.json();*/
+        
+        /* const res = await fetch("/frontend/scripts/test_jsons/user.json"); // Node.js backend endpoint
+        const user = await res.json(); */
+        const user=JSON.parse(localStorage.getItem("user"));
+        const form = document.getElementById("problemForm");
+        const userNameInput = document.getElementById("user");
+        const userIdInput = document.getElementById("userid");
+        userNameInput.value = user.vezeteknev + " " + user.keresztnev;
+        userIdInput.value = user.user_id;
+
+    } catch (err) {
+        console.error("Hiba a betöltésnél:", err);
+    }
+}
 window.addEventListener("DOMContentLoaded", () => {
 // 🔹 Változók a form elemeihez
 const form = document.getElementById("problemForm"); // signup vagy login form
@@ -7,7 +41,7 @@ const datetime=document.getElementById("datetime");
 const images=document.getElementById("images");
 const description=document.getElementById("details");
 const errorMessage = document.getElementById("error-message");
-
+const id=document.getElementById("userid").value;
 // 🔹 Hibakereső függvények
 function getProblemFormErrors(locationVal, dateTimeVal, descriptionVal){
     let errors = [];
@@ -37,22 +71,22 @@ if(form){
             return;
         }
 
-        const formData = {
-        user: user.value,
-        location: location.value,
-        datetime: datetime.value,
-        images: images.value,
-        details: description.value,
-        };
+        const formData = new FormData();
+        formData.append("location", location.value);
+        formData.append("details", description.value);
+        formData.append("datetime", datetime.value);
+
+        if (images.files.length > 0) {
+        formData.append("images", images.files[0]); // "kep" = backend upload.single("kep")
+        }
 
         try {
         const res = await fetch("/api/newproblems", {
             method: "POST",
             headers: { 
-                "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
              },
-            body: JSON.stringify(formData),
+            body: formData
         });
 
         const data = await res.json();
@@ -80,3 +114,4 @@ allInputs.forEach(input => {
     });
 })
 });
+loadUserName();

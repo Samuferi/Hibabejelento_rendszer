@@ -89,20 +89,14 @@
             
             <div class="input-box">
                 <!-- Bejelentő -->
-            
+            <input type="hidden" id="userid" name="userid" value="">
             <input type="text" id="user" name="user" value="" readonly><br>
             </div>
 
             <div class="input-box">
             <!-- Helyszín -->
             <label for="location">Bejelentés helye:</label>
-            <select id="location" name="location" >
-                <option value="" disabled selected>-- Válassz helyszínt --</option>
-                <option>Épület A</option>
-                <option>Épület B</option>
-                <option>Parkoló</option>
-                <option>Labor 101</option>
-            </select>
+            <input type="text" name="location" id="location" placeholder="Írd be a helyszínt..." ><br>
             </div>
             <div class="input-box">
             <!-- Időpont -->
