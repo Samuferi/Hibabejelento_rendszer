@@ -4,6 +4,7 @@ import cors from "cors";
 import jwt from "jsonwebtoken";
 import mysql from "mysql2/promise";
 import multer from "multer";
+import { JWT_SECRET } from './config.js';
 
 const router = express.Router();
 
@@ -42,7 +43,7 @@ function verifyToken(req, res, next) {
 
   const token = authHeader.split(" ")[1];
   try {
-    const decoded = jwt.verify(token, "titkoskulcsod"); // 👉 használd ugyanazt, mint a login-nál
+    const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded;
     next();
   } catch (err) {
@@ -52,7 +53,7 @@ function verifyToken(req, res, next) {
 
 // -------------------- ÚJ PROBLÉMA FELVÉTEL --------------------
 // fájlfeltöltés + token ellenőrzés
-app.post("/api/uj-problema", verifyToken, upload.single("kep"), async (req, res) => {
+app.post("/", verifyToken, upload.single("kep"), async (req, res) => {
   const { helyszin, leiras } = req.body;
   const user_id = req.user.user_id; // tokenből jön
   const kep_fajl = req.file ? req.file.path : null;
