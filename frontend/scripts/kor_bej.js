@@ -26,7 +26,7 @@ async function loadProblems() {
 
             problems.forEach(problem => {
             const div = document.createElement("div");
-            div.classList.add("container");
+            div.classList.add("wrapper-inner-2");
 
             const date = new Date(problem.idopont);
             const formattedDate = date.toLocaleString("hu-HU", {
