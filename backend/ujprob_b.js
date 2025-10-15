@@ -54,8 +54,8 @@ function verifyToken(req, res, next) {
 // -------------------- ÚJ PROBLÉMA FELVÉTEL --------------------
 // fájlfeltöltés + token ellenőrzés
 router.post("/", verifyToken, upload.single("images"), async (req, res) => {
-  console.log("📸 Fájl:", req.file);
-  console.log("📋 Body:", req.body);
+  //console.log("📸 Fájl:", req.file);
+  //console.log("📋 Body:", req.body);
   
   const { location, details } = req.body;
   const user_id = req.user.user_id; // tokenből jön
