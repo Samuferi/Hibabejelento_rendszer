@@ -57,12 +57,12 @@ router.post("/", verifyToken, upload.single("images"), async (req, res) => {
   //console.log("📸 Fájl:", req.file);
   //console.log("📋 Body:", req.body);
   
-  const { location, details } = req.body;
+  const { location, details, datetime } = req.body;
   const user_id = req.user.user_id; // tokenből jön
   const kep_fajl = req.file ? `/uploads/${req.file.filename}` : null;
 
 
-  if (!location || !details) {
+  if (!location || !details || !datetime) {
     return res.status(400).json({ error: "Hiányzó adatok!" });
   }
 
@@ -70,9 +70,9 @@ router.post("/", verifyToken, upload.single("images"), async (req, res) => {
     const conn = await pool.getConnection();
 
     const [result] = await conn.execute(
-      `INSERT INTO problems (helyszin, leiras, kep_url, status)
-       VALUES (?, ?, ?, 'Felvéve')`,
-      [location, details, kep_fajl]
+      `INSERT INTO problems (helyszin, leiras, idopont, kep_url, status)
+       VALUES (?, ?, ?, ?, 'Felvéve')`,
+      [location, details, datetime, kep_fajl]
     );
 
     const problem_id = result.insertId;
