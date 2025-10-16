@@ -17,7 +17,7 @@ async function loadProblems() {
             }
             const problems = await res.json();*/
             
-            const res = await fetch("/frontend/scripts/test_jsons/problem.json"); // Node.js backend endpoint
+            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
             const problems = await res.json();
 
             const container = document.getElementById("problems-container");
