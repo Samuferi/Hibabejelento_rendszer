@@ -71,22 +71,22 @@ if(form){
             return;
         }
 
-        const formData = {
-        id: id,
-        location: location.value,
-        datetime: datetime.value,
-        images: images.value,
-        details: description.value,
-        };
+        const formData = new FormData();
+        formData.append("location", location.value);
+        formData.append("details", description.value);
+        formData.append("datetime", datetime.value);
+
+        if (images.files.length > 0) {
+        formData.append("images", images.files[0]); // "kep" = backend upload.single("kep")
+        }
 
         try {
         const res = await fetch("/api/newproblems", {
             method: "POST",
             headers: { 
-                "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
              },
-            body: JSON.stringify(formData),
+            body: formData
         });
 
         const data = await res.json();
