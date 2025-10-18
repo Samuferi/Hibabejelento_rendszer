@@ -34,14 +34,12 @@ async function loadNewProblems() {
                 <img src="${problem.image}" alt="Hiba képe" style="max-width: 200px; max-height: 200px;">
                 <p><strong>Részletek:</strong> ${problem.details}</p>
                 <p><strong>Állapot:</strong> ${problem.status}</p>
-                <form>
+                <form id="worker-form-${problem.id}">
                     
                     <div class="input-box"><label for="status-${problem.id}">Állapot frissítése:</label><select id="status-${problem.id}" name="status">
-                        <option value="" disabled>--Válassz--</option>
-                        <option value="feldolgozatlan" ${problem.status === "feldolgozatlan" ? "selected" : ""}>Feldolgozatlan</option>
-                        <option value="kiosztva" ${problem.status === "kiosztva" ? "selected" : ""}>Kiosztva</option>
-                        <option value="megoldva" ${problem.status === "megoldva" ? "selected" : ""}>Megoldva</option>
-                        <option value="elutasítva" ${problem.status === "elutasítva" ? "selected" : ""}>Elutasítva</option>
+                        <option value="kiosztva" disabled selected }>Kiosztva</option>
+                        <option value="megoldva"}>Megoldva</option>
+                        <option value="elutasítva"}>Elutasítva</option>
                     </select></div>
                     <div class="input-box"><textarea id="comment-${problem.id}" name="comment" rows="3" placeholder="Megjegyzés..."></textarea></div>
                     <button type="submit" data-id="${problem.id}" class="btn">Frissít</button>
@@ -57,6 +55,50 @@ async function loadNewProblems() {
         } catch (err) {
             console.error("Hiba a betöltésnél:", err);
         }
+        const forms = document.querySelectorAll('[id^="worker-form-"]'); 
+        forms.forEach(form => { 
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault(); // ne frissüljön az oldal
+                const problemId = e.target.querySelector('button').getAttribute('data-id');
+                const statusSelect = e.target.querySelector(`#status-${problemId}`);
+                const commentTextarea = e.target.querySelector(`#comment-${problemId}`);
+                const selectedStatus = statusSelect.value;
+                const comment = commentTextarea.value;
+
+                if(selectedStatus == "kiosztva" || !selectedStatus) {
+                    alert("Kérlek, válassz státuszt!");
+                    return;
+                }
+
+                const token = localStorage.getItem("token"); //
+                if (!token) {
+                    alert("⚠️ Nem vagy bejelentkezve. Jelentkezz be újra!");
+                    return;
+                }
+                const formData = {
+                    problemId: problemId,
+                    status: selectedStatus,
+                    comment: comment
+                };
+                try {
+                    const res = await fetch("/api/assignProblemStatus", { // Node.js backend endpoint
+                        method: "POST",
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    if (!res.ok) {
+                        throw new Error("Hiba a dolgozó hozzárendelésénél!");
+                    }
+                    const result = await res.json();
+                    alert("✅ Sikeresen hozzárendelted a dolgozót!");
+                } catch (error) {
+                    console.error("Hiba:", error);
+                }
+            });
+        });
     }
 async function loadPrevProblems() {
     try {
