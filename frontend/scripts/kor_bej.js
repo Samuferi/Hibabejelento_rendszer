@@ -1,7 +1,7 @@
 async function loadProblems() {
         try {
 
-            const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            /* const token = localStorage.getItem("token"); // 🔸 Token lekérése
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
@@ -16,10 +16,10 @@ async function loadProblems() {
             if (!res.ok) {
                 throw new Error("Hiba a problémák lekérésében!");
             }
-            const problems = await res.json();
+            const problems = await res.json(); */
 
-            /*const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
-            const problems = await res.json();*/
+            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+            const problems = await res.json();
 
             const container = document.getElementById("problems-container");
             container.innerHTML = ""; // töröljük a régit
@@ -43,6 +43,8 @@ async function loadProblems() {
                 <img src="${problem.kep_url}" alt="Probléma képe" style="max-width: 200px; height: auto;">
                 <p>${problem.leiras}</p>
                 <p><strong>Állapot:</strong> ${problem.status}</p>
+                <p><strong>Dolgozó:</strong> ${problem.worker ==="" ? "Még nincs dolgozó." : problem.worker}</p>
+                <p><strong>Dolgozói megjegyzés:</strong> ${problem["worker-comment"] === ""? "Nincs megjegyzés.":problem["worker-comment"]}</p>
 
                 
             `;
