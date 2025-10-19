@@ -19,6 +19,7 @@ CREATE TABLE problems (
     idopont DATETIME DEFAULT CURRENT_TIMESTAMP,
     kep_url VARCHAR(255),                   
     leiras TEXT,
+    ugyfelszolg_megjegy TEXT,
     assigned_to INT,                        
     status ENUM('Felvéve', 'Folyamatban', 'Kész') DEFAULT 'Felvéve',
     FOREIGN KEY (assigned_to) REFERENCES users(user_id) ON DELETE SET NULL
