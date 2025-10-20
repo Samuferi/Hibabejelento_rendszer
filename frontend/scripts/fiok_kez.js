@@ -102,7 +102,7 @@ if(form){
         };
 
         try {
-        const res = await fetch("/api/newUserData", {
+        const res = await fetch("/api/profile", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
@@ -114,7 +114,7 @@ if(form){
         const data = await res.json();
         if (res.ok) {
             alert("✅ Sikeres változtatás!");
-            document.getElementById("problemForm").reset();
+            document.getElementById("userForm").reset();
         } else {
             alert("❌ Hiba: " + data.message);
         }
