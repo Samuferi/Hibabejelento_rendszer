@@ -43,8 +43,8 @@ async function loadProblems() {
                 <img src="${problem.kep_url}" alt="Probléma képe" style="max-width: 200px; height: auto;">
                 <p>${problem.leiras}</p>
                 <p><strong>Állapot:</strong> ${problem.status}</p>
-                <p><strong>Dolgozó:</strong> ${problem.worker ==="" ? "Még nincs dolgozó." : problem.worker}</p>
-                <p><strong>Dolgozói megjegyzés:</strong> ${problem["worker-comment"] === ""? "Nincs megjegyzés.":problem["worker-comment"]}</p>
+                <p><strong>Ügyintéző:</strong> ${problem.assigned_to ===null ? "Még nincs ügyintéző." : problem.assigned_to}</p>
+                <p><strong>Ügyintézői megjegyzés:</strong> ${problem.ugyfelszolg_megjegy === null ? "Nincs megjegyzés.":problem.ugyfelszolg_megjegy}</p>
 
                 
             `;
