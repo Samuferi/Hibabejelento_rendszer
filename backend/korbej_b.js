@@ -40,7 +40,7 @@ router.get("/", authenticateToken, async (req, res) => {
 
         // 🔸 SQL: kapcsolótáblán keresztül (user_problem)
         const [rows] = await db.query(`
-            SELECT p.problem_id, p.helyszin, p.idopont, p.kep_url, p.leiras, p.assigned_to, p.status, CONCAT(u.vezeteknev, ' ', u.keresztnev) AS user
+            SELECT p.problem_id, p.helyszin, p.idopont, p.kep_url, p.leiras, p.assigned_to, p.status, p.ugyfelszolg_megjegy, CONCAT(u.vezeteknev, ' ', u.keresztnev) AS user
             FROM problems p
             JOIN user_problems up ON up.problem_id = p.problem_id
             JOIN users u ON u.user_id = up.user_id

@@ -719,7 +719,7 @@ div.incorrect label{
 }
 div.incorrect input{
     border-color: #f06272;
-    background-color: #f06272;
+    background-color: #f0627288;
     color: white;
     ::placeholder {
         color: white;
@@ -732,11 +732,12 @@ div.incorrect input::placeholder,textarea::placeholder,select::placeholder {
     }
 div.incorrect textarea{
     border-color: #f06272;
-    background-color: #f06272;
+    background-color: #f0627288;
     color: white;
+
 }
 div.incorrect select{
     border-color: #f06272;
-    background-color: #f06272;
+    background-color: #f0627288;
     color: white;
 }

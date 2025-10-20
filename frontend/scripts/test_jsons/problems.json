@@ -6,7 +6,9 @@
     "date": "2024-10-01",
     "image": "/frontend/scripts/test_jsons/dog.jpg",
     "details": "nem megy a lift",
-    "status": "kiosztva"
+    "status": "megoldva",
+    "worker": "Kovács János",
+    "worker-comment": "megoldottuk a problémát, a lift újra működik"
   },
   {
     "id": 2,
@@ -15,7 +17,10 @@
     "date": "2024-10-01",
     "image": "/frontend/scripts/test_jsons/dog.jpg",
     "details": "nem működik a fűtés",
-    "status": "feldolgozatlan"
+    "status": "feldolgozatlan",
+    "worker": "",
+    "worker-comment": ""
+    
   },
   {
     "id": 3,
@@ -24,7 +29,9 @@
     "date": "2024-10-01",
     "image": "/frontend/scripts/test_jsons/dog.jpg",
     "details": "nem világítanak a lámpák",
-    "status": "megoldva"
+    "status": "megoldva",
+    "worker": "Kovács János",
+    "worker-comment": "kicseréltük az izzókat, most már világítanak"
   },
   {
     "id": 4,
@@ -33,7 +40,9 @@
     "date": "2024-10-01",
     "image": "/frontend/scripts/test_jsons/dog.jpg",
     "details": "nem világítanak a lámpák",
-    "status": "megoldva"
+    "status": "elutasítva",
+    "worker": "Kovács János",
+    "worker-comment": "a probléma nem a mi hatáskörünkbe tartozik"
   },
   {
     "id": 5,
@@ -42,6 +51,8 @@
     "date": "2024-10-01",
     "image": "/frontend/scripts/test_jsons/dog.jpg",
     "details": "nem világítanak a lámpák",
-    "status": "megoldva"
+    "status": "kiosztva",
+    "worker": "Kovács János",
+    "worker-comment": ""
   }
 ]

@@ -9,6 +9,7 @@ import newproblemRoutes from "./ujprob_b.js";
 import profileRoutes from "./fiok_kez_b.js"
 
 
+
 // __dirname beállítása
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
