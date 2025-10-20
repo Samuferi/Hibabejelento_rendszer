@@ -6,7 +6,7 @@ import loginRoutes from "./login_t.js";  // ide húzzuk be a login route-okat
 import indexRoutes from "./index_b.js";
 import problemRoutes from "./korbej_b.js"; 
 import newproblemRoutes from "./ujprob_b.js";
-
+import profileRoutes from "./fiok_kez_b.js"
 
 
 // __dirname beállítása
@@ -30,6 +30,7 @@ app.use("/api/problems", problemRoutes);
 // index route-ok
 app.use("/index", indexRoutes);
 app.use("/api/newproblems", newproblemRoutes);
+app.use("/api/profile", profileRoutes)
 
 
 // statikus frontend kiszolgálás
@@ -54,6 +55,10 @@ app.get("/problems", (req, res) => {
 
 app.get("/newproblems", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/pages/uj_bej.html"));
+});
+
+app.get("/profile", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/pages/fiok_kez.html"));
 });
 
 // szerver indítása
