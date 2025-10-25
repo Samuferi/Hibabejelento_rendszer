@@ -6,7 +6,8 @@ import loginRoutes from "./login_t.js";  // ide húzzuk be a login route-okat
 import indexRoutes from "./index_b.js";
 import problemRoutes from "./korbej_b.js"; 
 import newproblemRoutes from "./ujprob_b.js";
-import profileRoutes from "./fiok_kez_b.js"
+import profileRoutes from "./fiok_kez_b.js";
+
 
 
 
@@ -23,15 +24,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
 console.log("Uploads path:", path.join(__dirname, "uploads"));
 
-
-// login route-ok
-app.use("/api", loginRoutes);
-// probléma bejelentő route-ok
-app.use("/api/problems", problemRoutes);
-// index route-ok
-app.use("/index", indexRoutes);
-app.use("/api/newproblems", newproblemRoutes);
-app.use("/api/profile", profileRoutes)
 
 
 // statikus frontend kiszolgálás
@@ -61,6 +53,16 @@ app.get("/newproblems", (req, res) => {
 app.get("/profile", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/pages/fiok_kez.html"));
 });
+
+// login route-ok
+app.use("/api", loginRoutes);
+// probléma bejelentő route-ok
+app.use("/api/problems", problemRoutes);
+// index route-ok
+app.use("/index", indexRoutes);
+app.use("/api/newproblems", newproblemRoutes);
+app.use("/api/profile", profileRoutes);
+
 
 // szerver indítása
 app.listen(3000, () => {

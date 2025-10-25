@@ -8,9 +8,9 @@ const city = document.getElementById("city");             // csak signup
 const address = document.getElementById("address");       // csak signup
 const phone = document.getElementById("phone");
 const email = document.getElementById("email");                 // mindkettő
-const password = document.getElementById("password");           // mindkettő
-const errorMessage = document.getElementById("error-message");
-const status = document.getElementById("status");           // csak signup
+const password = document.getElementById("password");  
+const status = document.getElementById("status");           // mindkettő
+const errorMessage = document.getElementById("error-message");         // csak signup
 // 🔹 Hibakereső függvények
 function getNewUserFormErrors(userfnameVal,usersnameVal,postcodeVal, cityVal,addressVal, phoneVal, emailVal, passwordVal, statusVal){
     let errors = [];
