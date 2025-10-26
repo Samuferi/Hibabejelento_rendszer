@@ -7,6 +7,7 @@ import indexRoutes from "./index_b.js";
 import problemRoutes from "./korbej_b.js"; 
 import newproblemRoutes from "./ujprob_b.js";
 import profileRoutes from "./fiok_kez_b.js";
+import adminRoutes from "./admin_kezeloi_felulet.js";
 
 
 
@@ -62,6 +63,7 @@ app.use("/api/problems", problemRoutes);
 app.use("/index", indexRoutes);
 app.use("/api/newproblems", newproblemRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/admin", adminRoutes);
 
 
 // szerver indítása

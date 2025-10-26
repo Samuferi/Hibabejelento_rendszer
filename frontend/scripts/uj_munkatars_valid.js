@@ -55,7 +55,7 @@ if(form){
         };
 
         try {
-        const res = await fetch("/api/team", {
+        const res = await fetch("/api/admin/newemployee", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
@@ -67,7 +67,7 @@ if(form){
         const data = await res.json();
         if (res.ok) {
             alert("✅ Sikeres tagfelvétel!");
-            document.getElementById("problemForm").reset();
+            form.reset();
         } else {
             alert("❌ Hiba: " + data.message);
         }

@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="../styles/style.css">
     <script type="text/javascript" src="../styles/app.js" defer></script>
     <script type="module" src="../scripts/uj_munkatars_valid.js" defer></script>
-    <!-- <script type="text/javascript" src="../styles/uj_munkatars.js" defer></script> -->
+    <!-- <script type="text/javascript" src="../styles/uj_munkatars.js" defer></script>-->
+     <script type="module" src="../scripts/employees.js" defer></script> 
     <script type="module" src="../scripts/osszes_problema.js" defer></script>
-    <script type="module" src="../scripts/employees.js" defer></script>
     <script type="module" src="../scripts/role.js" defer></script>
     <script type="module" src="../scripts/index.js" defer></script>
 </head>
@@ -113,9 +113,18 @@
                 <input type="tel" id="phone" name="phone" placeholder="12345678912">
                 </div><div class="input-box"><label for="current-password">Jelszó</label>
                 <input type="password" id="password" name="password" placeholder="jelszó">
-                </div><div class="input-box"><label for="status">Munkakör</label>
-                <input type="text" id="status" name="status" placeholder="Munkakör">
-                </div><button type="submit" class="btn">Mentés</button>
+                </div>
+                <div class="input-box">
+                    <label for="status">Munkakör</label>
+                        <select id="status" name="status" required>
+                            <option value="">-- Válassz munkakört --</option>
+                            <option value="admin">Adminisztrátor</option>
+                            <option value="ugyintezo">Ügyintéző</option>
+                            <option value="fonok">Vezető</option>
+                            <option value="lakos">Felhasználó</option>
+                        </select>
+                </div>
+                <button type="submit" class="btn">Mentés</button>
 
 
             </form>
