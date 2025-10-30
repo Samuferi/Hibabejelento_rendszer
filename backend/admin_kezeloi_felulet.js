@@ -33,7 +33,7 @@ async function authenticateToken(req, res, next) {
 }
 
 // 🔹 Új munkatárs felvétele (csak admin)
-router.post("/newemployee", async (req, res) => {
+router.post("/newemployee", authenticateToken, async (req, res) => {
   const { userf, userl, postcode, city, address, phone, email, password, status } = req.body;
   if (req.user.role !== "admin") {
     return res.status(403).json({ message: "Nincs jogosultság!" });

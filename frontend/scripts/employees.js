@@ -32,7 +32,13 @@ async function loadEmployees() {
             `;
             employees.forEach(employee => {
                 const tr = document.createElement("tr");
-                
+                if (employee.status === "admin") {
+                    employee.status = "Admin";
+                } else if (employee.status === "fonok") {
+                    employee.status = "Vezető";
+                } else if (employee.status === "ugyintezo") {
+                    employee.status = "Ügyintéző";
+                }
 
                 tr.innerHTML = `
                     <td>${employee.id}</td>
