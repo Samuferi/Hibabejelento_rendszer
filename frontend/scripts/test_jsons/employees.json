@@ -1,26 +1,30 @@
 [
     {
         "id": 1,
-        "name": "Kovács János",
+        "firstname": "János",
+        "lastname": "Kovács",
         "email": "xyz@gmail.com",
-        "position": "főnök"
+        "status": "fonok"
     },
     {
         "id": 2,
-        "name": "Kovács Kornél",
+        "firstname": "János",
+        "lastname": "Kovács",
         "email": "xyz@gmail.com",
-        "position": "alkalmazott"
+        "status": "ugyintezo"
     },
     {
         "id": 3,
-        "name": "Kovács István",
+        "firstname": "János",
+        "lastname": "Kovács",
         "email": "xyz@gmail.com",
-        "position": "alkalmazott"
+        "status": "ugyintezo"
     },
     {
         "id": 4,
-        "name": "Kovács Bendegúz",
+        "firstname": "János",
+        "lastname": "Kovács",
         "email": "xyz@gmail.com",
-        "position": "admin"
+        "status": "admin"
     }
 ]
