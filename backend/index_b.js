@@ -34,10 +34,10 @@ router.get("/user", authenticateToken, (req, res) => {
 
 // Admin-only endpoint
 router.get("/admin", authenticateToken, (req, res) => {
-    if (req.user.role !== "admin") {
-        return res.status(403).json({ message: "Nincs jogosultság!" });
-    }
-    res.sendFile(path.join(__dirname, "../frontend/pages/admin.html"));
+  if (req.user.role !== "admin") {
+    return res.status(403).json({ message: "Nincs jogosultság!" });
+  }
+  // Frontend fogja betölteni az admin.html-t
+  res.status(200).json({ message: "Jogosultság rendben" });
 });
-
 export default router;

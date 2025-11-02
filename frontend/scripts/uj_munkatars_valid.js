@@ -8,9 +8,9 @@ const city = document.getElementById("city");             // csak signup
 const address = document.getElementById("address");       // csak signup
 const phone = document.getElementById("phone");
 const email = document.getElementById("email");                 // mindkettő
-const password = document.getElementById("password");           // mindkettő
-const errorMessage = document.getElementById("error-message");
-const status = document.getElementById("status");           // csak signup
+const password = document.getElementById("password");  
+const status = document.getElementById("status");           // mindkettő
+const errorMessage = document.getElementById("error-message");         // csak signup
 // 🔹 Hibakereső függvények
 function getNewUserFormErrors(userfnameVal,usersnameVal,postcodeVal, cityVal,addressVal, phoneVal, emailVal, passwordVal, statusVal){
     let errors = [];
@@ -55,7 +55,7 @@ if(form){
         };
 
         try {
-        const res = await fetch("/api/team", {
+        const res = await fetch("/api/admin/newemployee", {
             method: "POST",
             headers: { 
                 "Content-Type": "application/json",
@@ -67,7 +67,7 @@ if(form){
         const data = await res.json();
         if (res.ok) {
             alert("✅ Sikeres tagfelvétel!");
-            document.getElementById("problemForm").reset();
+            form.reset();
         } else {
             alert("❌ Hiba: " + data.message);
         }

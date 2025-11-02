@@ -294,7 +294,8 @@ h2{
 }
 
 #employeesTable {
-    width: 100%;
+    width: auto; 
+    table-layout: auto;
     border-collapse: collapse;
     margin: 12px 0 12px;
     background: transparent;
@@ -441,7 +442,7 @@ form > div{
 }
 /* új form rész */
 .wrapper{
-    width: 420px;
+    width: 400px;
     background: transparent;
     color: white;
     border-radius: 12px;
@@ -555,6 +556,29 @@ form > div{
     
 }
 
+.wrapper-employees{
+    width: fit-content;
+    background: transparent;
+    color: white;
+    border-radius: 12px;
+    padding:  30px 40px;
+    border: 2px solid var(--line-clr);
+    backdrop-filter: blur(20px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.37); 
+    margin: 20px 0 20px 0;
+}
+
+.wrapper-employees h1{
+    text-align: center;
+    font-size: 36px;
+    margin: 0px 0 30px 0;
+}
+.wrapper-employees p{
+    font-size: 14.5px;
+    text-align: center;
+    margin: 10px 0 15px 0;
+    color: #ffffff;
+}
 
 .wrapper h1{
     text-align: center;
@@ -624,7 +648,7 @@ form > div{
     resize: none;
 }
 .input-box select{
-    height: 100%;
+    height: 80px;
     width: 100%;
     border: none;
     outline: none;
@@ -741,3 +765,5 @@ div.incorrect select{
     background-color: #f0627288;
     color: white;
 }
+
+
