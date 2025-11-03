@@ -1,4 +1,4 @@
-// fonokRoutes.js
+
 import express from "express";
 import mysql from "mysql2/promise";
 import jwt from "jsonwebtoken";
@@ -7,12 +7,13 @@ import { JWT_SECRET } from "./config.js";
 const router = express.Router();
 
 // -------------------- ADATBÁZIS --------------------
-const pool = await mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "Ocsi_2018",
-  database: "hibabejelento",
-});
+const db = await mysql.createPool({
+            host: "localhost",
+            user: "root",
+            password: "asd123",
+            database: "hibabejelentes",
+            port: 3306
+        });
 
 // -------------------- TOKEN ELLENŐRZÉS --------------------
 function verifyFonok(req, res, next) {
@@ -35,7 +36,7 @@ function verifyFonok(req, res, next) {
 // -------------------- BEJELENTÉSEK LEKÉRÉSE --------------------
 router.get("/problems", verifyFonok, async (req, res) => {
   try {
-    const conn = await pool.getConnection();
+    const conn = await db.getConnection();
     const [problems] = await conn.execute(`
       SELECT p.problem_id, p.helyszin, p.leiras, p.idopont, p.status,
              u.user_id, u.vezeteknev, u.keresztnev
@@ -51,6 +52,21 @@ router.get("/problems", verifyFonok, async (req, res) => {
   }
 });
 
+// -------------------- DOLGOZÓK LEKÉRÉSE --------------------
+router.get("/employees", verifyFonok, async (req, res) => {
+  try {
+    const conn = await db.getConnection();
+    const [employees] = await conn.execute(`
+      SELECT user_id, vezeteknev, keresztnev FROM users WHERE role='munkatars'
+    `);
+    conn.release();
+    res.json(employees);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Hiba a dolgozók lekérésekor!" });
+  }
+});
+
 // -------------------- DOLGOZÓ HOZZÁRENDELÉSE --------------------
 router.post("/assignWorker", verifyFonok, async (req, res) => {
   const { problemId, workerId } = req.body;
@@ -60,11 +76,10 @@ router.post("/assignWorker", verifyFonok, async (req, res) => {
   }
 
   try {
-    const conn = await pool.getConnection();
+    const conn = await db.getConnection();
 
-    // Frissítés a problems táblában
     await conn.execute(
-      `UPDATE problems SET assigned_to = ? , status='Folyamatban' WHERE problem_id = ?`,
+      `UPDATE problems SET assigned_to = ?, status = 'Folyamatban' WHERE problem_id = ?`,
       [workerId, problemId]
     );
 

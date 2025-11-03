@@ -11,14 +11,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const db = await mysql.createPool({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: 'Ocsi_2018',
-  database: 'hibabejelento'
-});
-
-
+            host: "localhost",
+            user: "root",
+            password: "asd123",
+            database: "hibabejelentes",
+            port: 3306
+        });
 
 
 

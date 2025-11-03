@@ -6,6 +6,7 @@ import loginRoutes from "./login_t.js";  // ide húzzuk be a login route-okat
 import indexRoutes from "./index_b.js";
 import problemRoutes from "./korbej_b.js"; 
 import newproblemRoutes from "./ujprob_b.js";
+import fonokRoutes from "./fonok_felulet_b.js";
 
 
 
@@ -30,6 +31,7 @@ app.use("/api/problems", problemRoutes);
 // index route-ok
 app.use("/index", indexRoutes);
 app.use("/api/newproblems", newproblemRoutes);
+app.use("/api/fonok", fonokRoutes);
 
 
 // statikus frontend kiszolgálás
@@ -46,6 +48,10 @@ app.get("/signup", (req, res) => {
 
 app.get("/index", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/pages/index.html"));
+});
+
+app.get("/index/fonok", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/pages/fonok.html"));
 });
 
 app.get("/problems", (req, res) => {
