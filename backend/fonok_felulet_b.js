@@ -84,7 +84,7 @@ router.post("/assignWorker", verifyFonok, async (req, res) => {
     );
 
     conn.release();
-    res.json({ message: "✅ Dolgozó sikeresen hozzárendelve!" });
+    res.json({ message: " Dolgozó sikeresen hozzárendelve!" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Hiba a dolgozó hozzárendelésekor!" });
