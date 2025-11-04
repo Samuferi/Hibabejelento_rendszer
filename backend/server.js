@@ -6,6 +6,7 @@ import loginRoutes from "./login_t.js";  // ide húzzuk be a login route-okat
 import indexRoutes from "./index_b.js";
 import problemRoutes from "./korbej_b.js"; 
 import newproblemRoutes from "./ujprob_b.js";
+import profileRoutes from "./fiok_kez_b.js";
 import fonokRoutes from "./fonok_felulet_b.js";;
 import adminRoutes from "./admin_kezeloi_felulet.js";
 
