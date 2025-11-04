@@ -6,7 +6,9 @@ import loginRoutes from "./login_t.js";  // ide húzzuk be a login route-okat
 import indexRoutes from "./index_b.js";
 import problemRoutes from "./korbej_b.js"; 
 import newproblemRoutes from "./ujprob_b.js";
-import fonokRoutes from "./fonok_felulet_b.js";
+import fonokRoutes from "./fonok_felulet_b.js";;
+import adminRoutes from "./admin_kezeloi_felulet.js";
+
 
 
 
@@ -31,7 +33,7 @@ app.use("/api/problems", problemRoutes);
 // index route-ok
 app.use("/index", indexRoutes);
 app.use("/api/newproblems", newproblemRoutes);
-app.use("/api/fonok", fonokRoutes);
+app.use("/api/profile", profileRoutes)
 
 
 // statikus frontend kiszolgálás
@@ -60,6 +62,10 @@ app.get("/problems", (req, res) => {
 
 app.get("/newproblems", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/pages/uj_bej.html"));
+});
+
+app.get("/profile", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/pages/fiok_kez.html"));
 });
 
 // szerver indítása
