@@ -1,6 +1,6 @@
 async function loadEmployees() {
         try {
-            /* const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); // 🔸 Token lekérése
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
@@ -15,10 +15,10 @@ async function loadEmployees() {
             if (!res.ok) {
                 throw new Error("Hiba a problémák lekérésében!");
             } 
-            const problems = await res.json(); */
+            const problems = await res.json();
            
-            const res = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
-            const employees = await res.json();
+            /* const res = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
+            const employees = await res.json(); */
 
             const container = document.getElementById("employeesTable");
             container.innerHTML = `

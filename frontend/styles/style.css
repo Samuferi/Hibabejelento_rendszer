@@ -191,9 +191,9 @@ main p{
 .greet-sub{color:white; font: size 20px; font-weight: 600; margin-bottom: 12px;}
 .card h3{margin:0 0 6px; font-size:15px}
 .card p{margin:0; font-size:13px; color:var(--muted)}
-.card a{color:var(--accent-clr); text-decoration:none; font-weight:600; font-size:14px}
-.card a:hover{text-decoration:underline}
-.card a:visited{color:var(--accent-clr)}
+.card a{color:var(--text-clr); text-decoration:none; font-weight:600; font-size:14px}
+.card a:hover{text-decoration:underline; color: var(--secondary-text-clr);}
+.card a:visited{color:var(--text-clr)}
 .hero{
     width: 100%;
     display:flex; 
@@ -435,6 +435,9 @@ h2{
     .wrapper{
         width: 100%;
         box-sizing: border-box;
+    }
+    .wrapper-2 h1{
+        line-height: 1em;
     }
 
 }
