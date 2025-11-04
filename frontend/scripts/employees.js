@@ -15,7 +15,7 @@ async function loadEmployees() {
             if (!res.ok) {
                 throw new Error("Hiba a problémák lekérésében!");
             } 
-            const problems = await res.json();
+            const employees = await res.json();
            
             //const res = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
             //const employees = await res.json();
