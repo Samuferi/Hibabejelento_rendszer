@@ -7,12 +7,12 @@ import { JWT_SECRET } from "./config.js";
 const router = express.Router();
 
 const db = await mysql.createPool({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: 'Ocsi_2018',
-  database: 'hibabejelento'
-});
+            host: "localhost",
+            user: "root",
+            password: "asd123",
+            database: "hibabejelentes",
+            port: 3306
+        });
 
 // 🔹 Token ellenőrző middleware
 function authenticateToken(req, res, next) {

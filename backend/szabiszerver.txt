@@ -1,6 +1,6 @@
-const pool = mysql.createPool({
-  host: "localhost",         // 👉 a te adatbázisod host-ja (pl. localhost)
-  user: "root",              // 👉 a saját MySQL felhasználód
-  password: "asd123",  // 👉 a saját MySQL jelszavad
-  database: "varosihibabejelento", // 👉 az adatbázis neve
+const db = mysql.createPool({
+  host: "localhost",         
+  user: "root",             
+  password: "asd123",  
+  database: "varosihibabejelento"
 });
