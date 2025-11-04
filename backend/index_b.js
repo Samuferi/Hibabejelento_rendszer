@@ -40,4 +40,12 @@ router.get("/admin", authenticateToken, (req, res) => {
   // Frontend fogja betölteni az admin.html-t
   res.status(200).json({ message: "Jogosultság rendben" });
 });
+
+router.get("/fonok", authenticateToken, (req, res) => {
+  if (req.user.role !== "admin" && req.user.role !== "fonok") {
+    return res.status(403).json({ message: "Nincs jogosultság!" });
+  }
+  // Frontend fogja betölteni az fonok.html-t
+  res.status(200).json({ message: "Jogosultság rendben" });
+});
 export default router;

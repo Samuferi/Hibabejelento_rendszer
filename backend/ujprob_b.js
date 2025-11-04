@@ -23,13 +23,12 @@ const upload = multer({ storage });
 
 // -------------------- ADATBÁZIS --------------------
 const db = await mysql.createPool({
-            host: "localhost",
-            user: "root",
-            password: "asd123",
-            database: "hibabejelentes",
-            port: 3306
-        });
-
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 'Ocsi_2018',
+  database: 'hibabejelento'
+});
 // -------------------- APP ALAP --------------------
 const app = express();
 app.use(cors());

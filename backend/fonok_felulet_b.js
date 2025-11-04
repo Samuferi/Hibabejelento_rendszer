@@ -8,13 +8,12 @@ const router = express.Router();
 
 // -------------------- ADATBÁZIS --------------------
 const db = await mysql.createPool({
-            host: "localhost",
-            user: "root",
-            password: "asd123",
-            database: "hibabejelentes",
-            port: 3306
-        });
-
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: 'Ocsi_2018',
+  database: 'hibabejelento'
+});
 // -------------------- TOKEN ELLENŐRZÉS --------------------
 function verifyFonok(req, res, next) {
   const authHeader = req.headers["authorization"];
@@ -36,15 +35,11 @@ function verifyFonok(req, res, next) {
 // -------------------- BEJELENTÉSEK LEKÉRÉSE --------------------
 router.get("/problems", verifyFonok, async (req, res) => {
   try {
-    const conn = await db.getConnection();
-    const [problems] = await conn.execute(`
-      SELECT p.problem_id, p.helyszin, p.leiras, p.idopont, p.status,
-             u.user_id, u.vezeteknev, u.keresztnev
+    const [problems] = await db.query(`
+      SELECT p.problem_id, p.helyszin, p.leiras, p.idopont, p.status
       FROM problems p
-      LEFT JOIN users u ON p.assigned_to = u.user_id
       ORDER BY p.idopont DESC
     `);
-    conn.release();
     res.json(problems);
   } catch (err) {
     console.error(err);
@@ -55,11 +50,9 @@ router.get("/problems", verifyFonok, async (req, res) => {
 // -------------------- DOLGOZÓK LEKÉRÉSE --------------------
 router.get("/employees", verifyFonok, async (req, res) => {
   try {
-    const conn = await db.getConnection();
-    const [employees] = await conn.execute(`
+    const [employees] = await db.query(`
       SELECT user_id, vezeteknev, keresztnev FROM users WHERE role='munkatars'
     `);
-    conn.release();
     res.json(employees);
   } catch (err) {
     console.error(err);

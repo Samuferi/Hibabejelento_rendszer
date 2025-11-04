@@ -43,8 +43,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (userRole === "admin") {
       document.getElementById("admin").style.display = "block";
+      document.getElementById("fonok").style.display = "block";
+    } else if (userRole === "fonok") {
+      document.getElementById("admin").style.display = "none";
+      document.getElementById("fonok").style.display = "block";
     } else {
       document.getElementById("admin").style.display = "none";
+      document.getElementById("fonok").style.display = "none";
     }
 
   } catch (err) {
@@ -52,6 +57,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     alert("Hálózati hiba vagy szerverhiba történt.");
   }
 });
+
+
 
 document.getElementById("admin-link").addEventListener("click", async (e) => {
   e.preventDefault();
@@ -70,5 +77,25 @@ document.getElementById("admin-link").addEventListener("click", async (e) => {
     alert("Nincs jogosultság az admin felülethez!");
   } else {
     alert("Hiba történt az admin oldal elérésénél.");
+  }
+});
+
+document.getElementById("fonok-link").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem("token");
+
+  const response = await fetch("/index/fonok", {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    }
+  });
+
+  if (response.ok) {
+    window.location.href = "/pages/fonok.html";
+  } else if (response.status === 403) {
+    alert("Nincs jogosultság a vezetői felülethez!");
+  } else {
+    alert("Hiba történt a vezetői oldal elérésénél.");
   }
 });
