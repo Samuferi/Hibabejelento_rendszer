@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="../styles/style.css">
     <script type="text/javascript" src="../styles/app.js" defer></script>
     <script type="module" src="../scripts/uj_munkatars_valid.js" defer></script>
-    <!-- <script type="text/javascript" src="../styles/uj_munkatars.js" defer></script> -->
+    <!-- <script type="text/javascript" src="../styles/uj_munkatars.js" defer></script>-->
+     <script type="module" src="../scripts/employees.js" defer></script> 
     <script type="module" src="../scripts/osszes_problema.js" defer></script>
-    <script type="module" src="../scripts/employees.js" defer></script>
     <script type="module" src="../scripts/role.js" defer></script>
+    <script type="module" src="../scripts/index.js" defer></script>
 </head>
 <body>
     <nav id="sidebar">
@@ -60,8 +61,8 @@
                     <span>Hírek</span>
                 </a>
             </li>
-            <li class="active">
-                <a href="/index/admin">
+            <li class="active" id="admin">
+                <a href="#" id="admin-link">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M680-280q25 0 42.5-17.5T740-340q0-25-17.5-42.5T680-400q-25 0-42.5 17.5T620-340q0 25 17.5 42.5T680-280Zm0 120q31 0 57-14.5t42-38.5q-22-13-47-20t-52-7q-27 0-52 7t-47 20q16 24 42 38.5t57 14.5ZM480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v227q-19-8-39-14.5t-41-9.5v-147l-240-90-240 90v188q0 47 12.5 94t35 89.5Q310-290 342-254t71 60q11 32 29 61t41 52q-1 0-1.5.5t-1.5.5Zm200 0q-83 0-141.5-58.5T480-280q0-83 58.5-141.5T680-480q83 0 141.5 58.5T880-280q0 83-58.5 141.5T680-80ZM480-494Z"/></svg>
                     <span>Admin</span>
                 </a>
@@ -81,7 +82,7 @@
         </ul>
     </nav>
     <main>
-        <div class="wrapper">
+        <div class="wrapper-employees">
             <h1>Munkatársak</h1>
             <table id="employeesTable"></table>
             <div id="employees"></div>
@@ -110,9 +111,20 @@
                 <input type="email" id="email" name="email" placeholder="email-cím">
                 </div><div class="input-box"><label for="phone">Telefonszám:</label>
                 <input type="tel" id="phone" name="phone" placeholder="12345678912">
-                </div><div class="input-box"><label for="current-password">Jelszó</label>
+                </div><div class="input-box"><label for="password">Jelszó</label>
                 <input type="password" id="password" name="password" placeholder="jelszó">
-                </div><button type="submit" class="btn">Mentés</button>
+                </div>
+                <div class="input-box">
+                    <label for="status">Munkakör</label>
+                        <select id="status" name="status" required>
+                            <option value="">-- Válassz munkakört --</option>
+                            <option value="admin">Adminisztrátor</option>
+                            <option value="ugyintezo">Ügyintéző</option>
+                            <option value="fonok">Vezető</option>
+                            <option value="lakos">Felhasználó</option>
+                        </select>
+                </div>
+                <button type="submit" class="btn">Mentés</button>
 
 
             </form>

@@ -1,11 +1,11 @@
 async function loadProblems() {
         try {
-            /*const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); // 🔸 Token lekérése
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
             }
-             const res = await fetch("/api/problems", {
+             const res = await fetch("/api/admin/allproblems", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
@@ -15,10 +15,10 @@ async function loadProblems() {
             if (!res.ok) {
                 throw new Error("Hiba a problémák lekérésében!");
             }
-            const problems = await res.json();*/
-            
-            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
             const problems = await res.json();
+            
+            //const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+            //const problems = await res.json();
 
             const container = document.getElementById("problems-container");
             container.innerHTML = ""; // töröljük a régit
@@ -27,12 +27,22 @@ async function loadProblems() {
             const div = document.createElement("div");
             div.classList.add("wrapper-inner-2");
 
-            div.innerHTML = `
+            const date = new Date(problem.idopont);
+            const formattedDate = date.toLocaleString("hu-HU", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+            });
+
+             div.innerHTML = `
                 <h2>${problem.user}</h2>
-                <p><strong>Helyszín:</strong> ${problem.location}</p>
-                <p><strong>Dátum:</strong> ${problem.date}</p>
+                <p><strong>Helyszín:</strong> ${problem.helyszin}</p>
+                <p><strong>Dátum:</strong> ${formattedDate}</p>
+                <img src="${problem.kep_url}" alt="Probléma képe" style="max-width: 200px; height: auto;">
+                <p>${problem.leiras}</p>
                 <p><strong>Állapot:</strong> ${problem.status}</p>
-                
+                <p><strong>Ügyintéző:</strong> ${problem.assigned_to ===null ? "Még nincs ügyintéző." : problem.assigned_to}</p>
+                <p><strong>Ügyintézői megjegyzés:</strong> ${problem.ugyfelszolg_megjegy === null ? "Nincs megjegyzés.":problem.ugyfelszolg_megjegy}</p>
 
                 
             `;
