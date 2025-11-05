@@ -25,6 +25,7 @@ async function loadProblems() {
         });
         if (!res2.ok) throw new Error("Hiba a dolgozók lekérésében!");
         const employees = await res2.json();
+        console.log(employees);
 
         const container = document.getElementById("problems-container");
         container.innerHTML = "";
@@ -32,11 +33,16 @@ async function loadProblems() {
         problems.forEach(problem => {
             const div = document.createElement("div");
             div.classList.add("wrapper-inner-2");
-
+            const date = new Date(problem.idopont);
+            const formattedDate = date.toLocaleString("hu-HU", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+            });
             let temp = `
                 <h2>Probléma #${problem.problem_id}</h2>
                 <p><strong>Helyszín:</strong> ${problem.helyszin}</p>
-                <p><strong>Dátum:</strong> ${problem.idopont}</p>
+                <p><strong>Dátum:</strong> ${formattedDate}</p>
                 <p><strong>Leírás:</strong> ${problem.leiras}</p>
                 <p><strong>Státusz:</strong> ${problem.status}</p>
                 <form id="worker-form-${problem.problem_id}">

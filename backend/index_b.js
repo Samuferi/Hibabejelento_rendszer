@@ -1,9 +1,13 @@
 // index_b.js
 import express from "express";
 import jwt from "jsonwebtoken";
+import path from "path";
+import { fileURLToPath } from "url";
 import { JWT_SECRET} from "./config.js";
 
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // Middleware: token ellenőrzés
@@ -38,14 +42,14 @@ router.get("/admin", authenticateToken, (req, res) => {
     return res.status(403).json({ message: "Nincs jogosultság!" });
   }
   // Frontend fogja betölteni az admin.html-t
-  res.status(200).json({ message: "Jogosultság rendben" });
+  res.sendFile(path.join(__dirname, "../frontend/pages/admin.html"));
 });
 
 router.get("/fonok", authenticateToken, (req, res) => {
-  if (req.user.role !== "admin" && req.user.role !== "fonok") {
+  if (req.user.role !== "fonok" && req.user.role !== "admin") {
     return res.status(403).json({ message: "Nincs jogosultság!" });
   }
   // Frontend fogja betölteni az fonok.html-t
-  res.status(200).json({ message: "Jogosultság rendben" });
+  res.sendFile(path.join(__dirname, "../frontend/pages/fonok.html"));
 });
 export default router;

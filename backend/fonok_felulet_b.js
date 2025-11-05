@@ -14,30 +14,30 @@ const db = await mysql.createPool({
   password: 'Ocsi_2018',
   database: 'hibabejelento'
 });
-// -------------------- TOKEN ELLENŐRZÉS --------------------
-function verifyFonok(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  if (!authHeader) return res.status(401).json({ error: "Hiányzó token!" });
 
-  const token = authHeader.split(" ")[1];
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    if (decoded.role !== "fonok") {
-      return res.status(403).json({ error: "Hozzáférés megtagadva!" });
+async function authenticateToken(req, res, next) {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    if (!token) return res.status(401).json({ message: "Nincs token megadva!" });
+
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET); // ugyanaz a kulcs mint a login-nál
+        req.user = decoded;
+        next();
+    } catch (err) {
+        console.error("Token hiba:", err);
+        return res.status(403).json({ message: "Érvénytelen token!" });
     }
-    req.user = decoded;
-    next();
-  } catch (err) {
-    res.status(403).json({ error: "Érvénytelen vagy lejárt token!" });
-  }
 }
 
 // -------------------- BEJELENTÉSEK LEKÉRÉSE --------------------
-router.get("/problems", verifyFonok, async (req, res) => {
+router.get("/problems", authenticateToken, async (req, res) => {
   try {
     const [problems] = await db.query(`
       SELECT p.problem_id, p.helyszin, p.leiras, p.idopont, p.status
       FROM problems p
+      WHERE p.status = "Felvéve"
       ORDER BY p.idopont DESC
     `);
     res.json(problems);
@@ -48,10 +48,10 @@ router.get("/problems", verifyFonok, async (req, res) => {
 });
 
 // -------------------- DOLGOZÓK LEKÉRÉSE --------------------
-router.get("/employees", verifyFonok, async (req, res) => {
+router.get("/employees", authenticateToken, async (req, res) => {
   try {
     const [employees] = await db.query(`
-      SELECT user_id, vezeteknev, keresztnev FROM users WHERE role='munkatars'
+      SELECT user_id, vezeteknev, keresztnev FROM users WHERE role='ugyintezo'
     `);
     res.json(employees);
   } catch (err) {
@@ -61,7 +61,7 @@ router.get("/employees", verifyFonok, async (req, res) => {
 });
 
 // -------------------- DOLGOZÓ HOZZÁRENDELÉSE --------------------
-router.post("/assignWorker", verifyFonok, async (req, res) => {
+router.post("/assignWorker", authenticateToken, async (req, res) => {
   const { problemId, workerId } = req.body;
 
   if (!problemId || !workerId) {

@@ -72,11 +72,17 @@ document.getElementById("admin-link").addEventListener("click", async (e) => {
   });
 
   if (response.ok) {
-    window.location.href = "/pages/admin.html";
+    const html = await response.text(); 
+    document.open();                     
+    document.write(html);                
+    document.close();                    
+    window.history.pushState({}, "", "/index/admin");
   } else if (response.status === 403) {
-    alert("Nincs jogosultság az admin felülethez!");
+    alert("Nincs jogosultság a vezetői felülethez!");
+  } else if (response.status === 401) {
+    alert("Nem vagy bejelentkezve!");
   } else {
-    alert("Hiba történt az admin oldal elérésénél.");
+    alert("Ismeretlen hiba történt a betöltésnél!");
   }
 });
 
@@ -92,10 +98,16 @@ document.getElementById("fonok-link").addEventListener("click", async (e) => {
   });
 
   if (response.ok) {
-    window.location.href = "/pages/fonok.html";
+    const html = await response.text(); 
+    document.open();                     
+    document.write(html);                
+    document.close();                    
+    window.history.pushState({}, "", "/index/fonok");
   } else if (response.status === 403) {
     alert("Nincs jogosultság a vezetői felülethez!");
+  } else if (response.status === 401) {
+    alert("Nem vagy bejelentkezve!");
   } else {
-    alert("Hiba történt a vezetői oldal elérésénél.");
+    alert("Ismeretlen hiba történt a betöltésnél!");
   }
 });
