@@ -17,8 +17,8 @@ async function loadEmployees() {
             } 
             const employees = await res.json();
            
-            //const res = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
-            //const employees = await res.json();
+            /* const res = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
+            const employees = await res.json(); */
 
             const container = document.getElementById("employeesTable");
             container.innerHTML = `

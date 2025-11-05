@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "firstname": "János",
+        "lastname": "Kovács",
+        "title": "Új rendszer bevezetése",
+        "content": "Örömmel jelentjük be, hogy új hibabejelentő rendszert vezettünk be.",
+        "date": "2024-06-01"
+    },
+    {
+        "id": 2,
+        "firstname": "János",
+        "lastname": "Kovács",
+        "title": "Rendszer karbantartás",
+        "content": "A rendszer karbantartás miatt 2024.06.05-én 22:00 és 2024.06.06-án 02:00 között nem lesz elérhető.",
+        "date": "2024-06-05"
+    },
+    {
+        "id": 3,
+        "firstname": "János",
+        "lastname": "Kovács",
+        "title": "Új funkció bevezetése",
+        "content": "Elindítottuk az új funkciót, amely javítja a felhasználói élményt.",
+        "date": "2024-06-10"
+    },
+    {
+        "id": 4,
+        "firstname": "János",
+        "lastname": "Kovács",
+        "title": "Leállás",
+        "content": "Az ügyintézők számára karbantartás miatt a rendszer nem elérhető.",
+        "date": "2024-06-15"
+    
+    }
+]
