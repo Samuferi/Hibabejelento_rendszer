@@ -1,6 +1,6 @@
 async function loadProblems() {
         try {
-            /*const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); // 🔸 Token lekérése
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
@@ -15,13 +15,56 @@ async function loadProblems() {
             if (!res.ok) {
                 throw new Error("Hiba a problémák lekérésében!");
             }
-            const problems = await res.json();*/
+            const problems = await res.json();
+
+            const res2 = await fetch("/api/employees", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Content-Type": "application/json"
+            }
+            });
+            if (!res2.ok) {
+                throw new Error("Hiba a dolgozók lekérésében!");
+            }
+            const employes = await res2.json();
+
+            const res3 = await fetch("/api/activeProblems", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Content-Type": "application/json"
+            }
+            });
+            if (!res3.ok) {
+                throw new Error("Hiba az aktív problémák lekérésében!");
+            }
+            const activeProblems = await res3.json();
+
+            const res4 = await fetch("/api/resolvedProblems", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Content-Type": "application/json"
+            }
+            });
+            if (!res4.ok) {
+                throw new Error("Hiba a megoldott problémák lekérésében!");
+            }
+            const resolvedProblems = await res4.json();
+
             
-            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+            /* const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
             const problems = await res.json();
 
             const res2 = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
             const employes = await res2.json();
+
+            const res3 = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+            const activeProblems = await res3.json();
+
+            const res4 = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+            const resolvedProblems = await res4.json(); */
 
             const container = document.getElementById("problems-container");
             container.innerHTML = ""; // töröljük a régit
@@ -53,6 +96,36 @@ async function loadProblems() {
 
             div.innerHTML = temp;
             container.appendChild(div);
+
+            const container1 = document.getElementById("problems-container-1");
+            container1.innerHTML = ""; // töröljük a régit
+            activeProblems.forEach(problem => {
+                const div = document.createElement("div");
+                div.classList.add("wrapper-inner-2");
+                div.innerHTML = `
+                    <h2>${problem.user}</h2>
+                    <p><strong>Helyszín:</strong> ${problem.location}</p>
+                    <p><strong>Dátum:</strong> ${problem.date}</p>
+                    <p><strong>Részletek:</strong> ${problem.details}</p>
+                    <p><strong>Kiosztott dolgozó:</strong> ${problem.assignedWorker}</p>
+                `;
+                container1.appendChild(div);
+            });
+
+            const container2 = document.getElementById("problems-container-2");
+            container2.innerHTML = ""; // töröljük a régit
+            resolvedProblems.forEach(problem => {
+                const div = document.createElement("div");
+                div.classList.add("wrapper-inner-2");
+                div.innerHTML = `
+                    <h2>${problem.user}</h2>
+                    <p><strong>Helyszín:</strong> ${problem.location}</p>
+                    <p><strong>Dátum:</strong> ${problem.date}</p>
+                    <p><strong>Részletek:</strong> ${problem.details}</p>
+                    <p><strong>Kiosztott dolgozó:</strong> ${problem.assignedWorker}</p>
+                `;
+                container2.appendChild(div);
+            });    
         });
     } catch (err) {
         console.error("Hiba a betöltésnél:", err);
