@@ -1,4 +1,4 @@
-/* // Token dekódolás (JWT payload kiolvasás)
+/*// Token dekódolás (JWT payload kiolvasás)
 import { parseJwt } from "./dec_token.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const manLink = document.querySelector('a[href="fonok.html"]');
     const munLink = document.querySelector('a[href="munkatars.html"]');
     const adminLink = document.querySelector('a[href="admin.html"]');
+    const hirfLink = document.querySelector('a[href="hirfelvetel.html"]');
     // Ha NEM admin → elrejtjük az Admin menüpontot
     switch (payload.role) {
         case "admin":
@@ -38,6 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             if (manLink) {
                 manLink.parentElement.style.display = "none";
+            }
+            if (hirfLink) {
+                hirfLink.parentElement.style.display = "none";
             }
             break;
         case "fonok":
@@ -58,6 +62,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (munLink) {
                 munLink.parentElement.style.display = "none";
             }
+            if (hirfLink) {
+                hirfLink.parentElement.style.display = "none";
+            }
+            break;
         default:
             // ismeretlen szerep → logout
             localStorage.removeItem("token");
@@ -82,5 +90,4 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(err);
             window.location.href = "login.html";
         }); */
-/*});
-*/
+/*});*/
