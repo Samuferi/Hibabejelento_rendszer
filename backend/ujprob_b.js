@@ -66,7 +66,7 @@ router.post("/", verifyToken, upload.single("images"), async (req, res) => {
   }
 
   try {
-    const conn = await pool.getConnection();
+    const conn = await db.getConnection();
 
     const [result] = await conn.execute(
       `INSERT INTO problems (helyszin, leiras, idopont, kep_url, status)

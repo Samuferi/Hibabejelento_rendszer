@@ -61,8 +61,8 @@ async function loadProblems() {
             const res4 = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
             const resolvedProblems = await res4.json(); */
 
-            const container = document.getElementById("problems-container");
-            container.innerHTML = ""; // töröljük a régit
+        const container = document.getElementById("problems-container");
+        container.innerHTML = ""; // töröljük a régit
 
         problems.forEach(problem => {
             const div = document.createElement("div");
