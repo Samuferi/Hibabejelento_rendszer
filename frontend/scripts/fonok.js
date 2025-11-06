@@ -27,9 +27,8 @@ async function loadProblems() {
         });
         if (!res2.ok) throw new Error("Hiba a dolgozók lekérésében!");
         const employees = await res2.json();
-        console.log(employees);
 
-                    const res3 = await fetch("/api/activeProblems", {
+            const res3 = await fetch("/api/fonok/activeProblems", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
@@ -41,7 +40,7 @@ async function loadProblems() {
             }
             const activeProblems = await res3.json();
 
-            const res4 = await fetch("/api/resolvedProblems", {
+            const res4 = await fetch("/api/fonok/resolvedProblems", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
@@ -69,6 +68,7 @@ async function loadProblems() {
                 <h2>Probléma #${problem.problem_id}</h2>
                 <p><strong>Helyszín:</strong> ${problem.helyszin}</p>
                 <p><strong>Dátum:</strong> ${formattedDate}</p>
+                <img src="${problem.kep_url}" alt="Probléma képe" style="max-width: 200px; height: auto;">
                 <p><strong>Leírás:</strong> ${problem.leiras}</p>
                 <p><strong>Státusz:</strong> ${problem.status}</p>
                 <form id="worker-form-${problem.problem_id}">
@@ -95,12 +95,19 @@ async function loadProblems() {
             activeProblems.forEach(problem => {
                 const div = document.createElement("div");
                 div.classList.add("wrapper-inner-2");
+                const date = new Date(problem.idopont);
+                const formattedDate = date.toLocaleString("hu-HU", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+                });
                 div.innerHTML = `
                     <h2>${problem.user}</h2>
-                    <p><strong>Helyszín:</strong> ${problem.location}</p>
-                    <p><strong>Dátum:</strong> ${problem.date}</p>
-                    <p><strong>Részletek:</strong> ${problem.details}</p>
-                    <p><strong>Kiosztott dolgozó:</strong> ${problem.assignedWorker}</p>
+                    <p><strong>Helyszín:</strong> ${problem.helyszin}</p>
+                    <p><strong>Dátum:</strong> ${formattedDate}</p>
+                    <img src="${problem.kep_url}" alt="Probléma képe" style="max-width: 200px; height: auto;">
+                    <p><strong>Leírás:</strong> ${problem.leiras}</p>
+                    <p><strong>Kiosztott dolgozó:</strong> ${problem.assigned_name}</p>
                 `;
                 container1.appendChild(div);
             });
@@ -110,12 +117,20 @@ async function loadProblems() {
             resolvedProblems.forEach(problem => {
                 const div = document.createElement("div");
                 div.classList.add("wrapper-inner-2");
+                const date = new Date(problem.idopont);
+                const formattedDate = date.toLocaleString("hu-HU", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+                });
                 div.innerHTML = `
                     <h2>${problem.user}</h2>
-                    <p><strong>Helyszín:</strong> ${problem.location}</p>
-                    <p><strong>Dátum:</strong> ${problem.date}</p>
-                    <p><strong>Részletek:</strong> ${problem.details}</p>
-                    <p><strong>Kiosztott dolgozó:</strong> ${problem.assignedWorker}</p>
+                    <p><strong>Helyszín:</strong> ${problem.helyszin}</p>
+                    <p><strong>Dátum:</strong> ${formattedDate}</p>
+                    <img src="${problem.kep_url}" alt="Probléma képe" style="max-width: 200px; height: auto;">
+                    <p><strong>Leírás:</strong> ${problem.leiras}</p>
+                    <p><strong>Kiosztott dolgozó:</strong> ${problem.assigned_name}</p>
+                    <p><strong>Záró megjegyzés:</strong> ${problem.ugyfelszolg_megjegy}</p>
                 `;
                 container2.appendChild(div);
             });

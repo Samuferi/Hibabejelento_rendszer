@@ -47,9 +47,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (userRole === "fonok") {
       document.getElementById("admin").style.display = "none";
       document.getElementById("fonok").style.display = "block";
+    }else if (userRole === "munkatars") {
+      document.getElementById("admin").style.display = "none";
+      document.getElementById("fonok").style.display = "none";
+      document.getElementById("munkatars").style.display = "block";
     } else {
       document.getElementById("admin").style.display = "none";
       document.getElementById("fonok").style.display = "none";
+      document.getElementById("munkatars").style.display = "none";
     }
 
   } catch (err) {
@@ -72,7 +77,7 @@ document.getElementById("admin-link").addEventListener("click", async (e) => {
   });
 
   if (response.ok) {
-    window.location.href = "./pages/admin.html";
+    window.location.href = "/pages/admin.html";
   } else if (response.status === 403) {
     alert("Nincs jogosultság a vezetői felülethez!");
   } else if (response.status === 401) {
@@ -94,7 +99,7 @@ document.getElementById("fonok-link").addEventListener("click", async (e) => {
   });
 
   if (response.ok) {
-    window.location.href = "./pages/fonok.html";
+    window.location.href = "/pages/fonok.html";
   } else if (response.status === 403) {
     alert("Nincs jogosultság a vezetői felülethez!");
   } else if (response.status === 401) {
@@ -116,7 +121,7 @@ document.getElementById("munkatars-link").addEventListener("click", async (e) =>
   });
 
   if (response.ok) {
-    window.location.href = "./pages/munkatars.html";
+    window.location.href = "/pages/munkatars.html";
   } else if (response.status === 403) {
     alert("Nincs jogosultság a vezetői felülethez!");
   } else if (response.status === 401) {

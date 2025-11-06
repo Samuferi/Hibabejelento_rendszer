@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "./config.js";
 
 const router = express.Router();
+router.use("/uploads", express.static("uploads"));
 
 // -------------------- ADATBÁZIS --------------------
 const db = await mysql.createPool({
@@ -35,7 +36,7 @@ async function authenticateToken(req, res, next) {
 router.get("/problems", authenticateToken, async (req, res) => {
   try {
     const [problems] = await db.query(`
-      SELECT p.problem_id, p.helyszin, p.leiras, p.idopont, p.status
+      SELECT p.problem_id, p.helyszin, p.kep_url, p.leiras, p.idopont, p.status
       FROM problems p
       WHERE p.status = "Felvéve"
       ORDER BY p.idopont DESC
@@ -81,6 +82,42 @@ router.post("/assignWorker", authenticateToken, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Hiba a dolgozó hozzárendelésekor!" });
+  }
+});
+
+router.get("/activeProblems", authenticateToken, async (req, res) => {
+  try {
+    const [problems] = await db.query(`
+      SELECT p.problem_id, p.helyszin, p.idopont, p.leiras, p.kep_url, p.assigned_to,  CONCAT(a.vezeteknev, ' ', a.keresztnev) AS assigned_name, p.status, CONCAT(u.vezeteknev, ' ', u.keresztnev) AS user
+            FROM problems p
+            JOIN user_problems up ON up.problem_id = p.problem_id
+            JOIN users u ON u.user_id = up.user_id
+            LEFT JOIN users a ON a.user_id = p.assigned_to
+            WHERE p.status = "Folyamatban"
+            ORDER BY p.idopont DESC
+    `);
+    res.json(problems);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Hiba a bejelentések lekérésekor!" });
+  }
+});
+
+router.get("/resolvedProblems", authenticateToken, async (req, res) => {
+  try {
+    const [problems] = await db.query(`
+      SELECT p.problem_id, p.helyszin, p.idopont, p.leiras, p.kep_url, p.assigned_to, p.ugyfelszolg_megjegy, CONCAT(a.vezeteknev, ' ', a.keresztnev) AS assigned_name, p.status, CONCAT(u.vezeteknev, ' ', u.keresztnev) AS user
+            FROM problems p
+            JOIN user_problems up ON up.problem_id = p.problem_id
+            JOIN users u ON u.user_id = up.user_id
+            LEFT JOIN users a ON a.user_id = p.assigned_to
+            WHERE p.status = "Megoldva"
+            ORDER BY p.idopont DESC
+    `);
+    res.json(problems);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Hiba a bejelentések lekérésekor!" });
   }
 });
 
