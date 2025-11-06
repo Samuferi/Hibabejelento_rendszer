@@ -13,7 +13,6 @@ const db = await mysql.createPool({
   password: 'Ocsi_2018',
   database: 'hibabejelento'
 });
-
 // 🔹 Token ellenőrző middleware
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];

@@ -21,7 +21,6 @@ const db = await mysql.createPool({
 
 
 
-
 // 🔹 REGISZTRÁCIÓ
 router.post('/register', async (req, res) => {
   console.log("Kapott adatok:", req.body);

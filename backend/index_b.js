@@ -1,9 +1,13 @@
 // index_b.js
 import express from "express";
 import jwt from "jsonwebtoken";
+import path from "path";
+import { fileURLToPath } from "url";
 import { JWT_SECRET} from "./config.js";
 
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // Middleware: token ellenőrzés
@@ -12,7 +16,6 @@ function authenticateToken(req, res, next) {
     const token = authHeader && authHeader.split(" ")[1];
 
     //console.log("Kapott Authorization header:", authHeader);
-    //console.log("Kivágott token:", token); 
 
     if (!token) return res.sendStatus(401);
 
@@ -37,7 +40,22 @@ router.get("/admin", authenticateToken, (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ message: "Nincs jogosultság!" });
   }
-  // Frontend fogja betölteni az admin.html-t
-  res.status(200).json({ message: "Jogosultság rendben" });
+  res.status(200).json({ message: "Üdvözlünk az admin felületen!" });
+});
+
+router.get("/fonok", authenticateToken, (req, res) => {
+  if (req.user.role !== "fonok" && req.user.role !== "admin") {
+    return res.status(403).json({ message: "Nincs jogosultság!" });
+  }
+  // Frontend fogja betölteni az fonok.html-t
+  res.status(200).json({ message: "Üdvözlünk az vezetői felületen!" });
+});
+
+router.get("/munkatars", authenticateToken, (req, res) => {
+  if (req.user.role !== "ugyintezo" && req.user.role !== "admin") {
+    return res.status(403).json({ message: "Nincs jogosultság!" });
+  }
+  // Frontend fogja betölteni az munkatars.html-t
+  res.status(200).json({ message: "Üdvözlünk az munkatárs felületen!" });
 });
 export default router;

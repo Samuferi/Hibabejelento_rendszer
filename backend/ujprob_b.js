@@ -22,14 +22,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // -------------------- ADATBÁZIS --------------------
-const pool = await mysql.createPool({
+const db = await mysql.createPool({
   host: 'localhost',
   port: 3306,
   user: 'root',
   password: 'Ocsi_2018',
   database: 'hibabejelento'
 });
-
 // -------------------- APP ALAP --------------------
 const app = express();
 app.use(cors());
