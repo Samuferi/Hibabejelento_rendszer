@@ -10,7 +10,8 @@ async function loadProblems() {
         const res = await fetch("/api/fonok/problems", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
             }
         });
         if (!res.ok) throw new Error("Hiba a problémák lekérésében!");
@@ -20,12 +21,37 @@ async function loadProblems() {
         const res2 = await fetch("/api/fonok/employees", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
             }
         });
         if (!res2.ok) throw new Error("Hiba a dolgozók lekérésében!");
         const employees = await res2.json();
         console.log(employees);
+
+                    const res3 = await fetch("/api/activeProblems", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Content-Type": "application/json"
+            }
+            });
+            if (!res3.ok) {
+                throw new Error("Hiba az aktív problémák lekérésében!");
+            }
+            const activeProblems = await res3.json();
+
+            const res4 = await fetch("/api/resolvedProblems", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Content-Type": "application/json"
+            }
+            });
+            if (!res4.ok) {
+                throw new Error("Hiba a megoldott problémák lekérésében!");
+            }
+            const resolvedProblems = await res4.json();
 
         const container = document.getElementById("problems-container");
         container.innerHTML = "";
@@ -64,6 +90,35 @@ async function loadProblems() {
 
             div.innerHTML = temp;
             container.appendChild(div);
+                        const container1 = document.getElementById("problems-container-1");
+            container1.innerHTML = ""; // töröljük a régit
+            activeProblems.forEach(problem => {
+                const div = document.createElement("div");
+                div.classList.add("wrapper-inner-2");
+                div.innerHTML = `
+                    <h2>${problem.user}</h2>
+                    <p><strong>Helyszín:</strong> ${problem.location}</p>
+                    <p><strong>Dátum:</strong> ${problem.date}</p>
+                    <p><strong>Részletek:</strong> ${problem.details}</p>
+                    <p><strong>Kiosztott dolgozó:</strong> ${problem.assignedWorker}</p>
+                `;
+                container1.appendChild(div);
+            });
+
+            const container2 = document.getElementById("problems-container-2");
+            container2.innerHTML = ""; // töröljük a régit
+            resolvedProblems.forEach(problem => {
+                const div = document.createElement("div");
+                div.classList.add("wrapper-inner-2");
+                div.innerHTML = `
+                    <h2>${problem.user}</h2>
+                    <p><strong>Helyszín:</strong> ${problem.location}</p>
+                    <p><strong>Dátum:</strong> ${problem.date}</p>
+                    <p><strong>Részletek:</strong> ${problem.details}</p>
+                    <p><strong>Kiosztott dolgozó:</strong> ${problem.assignedWorker}</p>
+                `;
+                container2.appendChild(div);
+            });
         });
 
         // --- Eseménykezelők ---
