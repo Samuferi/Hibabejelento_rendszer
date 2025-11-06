@@ -1,9 +1,9 @@
 [
     {
         "id": 1,
-        "name": "Kovács János",
+        "vezeteknev": "Kovács",
+        "keresztnev": "János",
         "email": "xyz@gmail.com",
-        "phone": "06301234567",
-        "password": "password123"
+        "phone": "06301234567"
     }
 ]

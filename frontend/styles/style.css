@@ -18,6 +18,7 @@ body{
     min-height: 100vh;
     min-height: 100dvh;
     background-image: url('main_bg.jpg');
+    background-size: cover;
     color: var(--text-clr);
     display:grid;
     grid-template-columns: auto 1fr;
@@ -190,6 +191,9 @@ main p{
 .greet-sub{color:white; font: size 20px; font-weight: 600; margin-bottom: 12px;}
 .card h3{margin:0 0 6px; font-size:15px}
 .card p{margin:0; font-size:13px; color:var(--muted)}
+.card a{color:var(--text-clr); text-decoration:none; font-weight:600; font-size:14px}
+.card a:hover{text-decoration:underline; color: var(--secondary-text-clr);}
+.card a:visited{color:var(--text-clr)}
 .hero{
     width: 100%;
     display:flex; 
@@ -350,6 +354,10 @@ h2{
         border-top: 1px solid var(--line-clr);
         padding: 0;
         top: unset;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         > ul{
             padding:0;
@@ -401,7 +409,36 @@ h2{
             }
 
         }
+        
     }
+    .wrapper-employees{
+            width: 100%;
+
+    }
+    #employeesTable {
+        font-size: .7em;
+    }
+    .wrapper-2 .wrapper-inner{
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center;
+
+    }
+    .wrapper-2 .wrapper-inner-2{
+        width: 100% !important;     
+        max-width: 420px;           
+        box-sizing: border-box;
+        flex: 0 0 100%;             
+        margin: 0 auto; 
+    }
+    .wrapper{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .wrapper-2 h1{
+        line-height: 1em;
+    }
+
 }
 
 form > div{
@@ -476,6 +513,46 @@ form > div{
     border-radius: 12px;
     margin: 10px 0;
     
+}
+.news .wrapper-2{
+    width: 100%;
+    background: transparent;
+    color: white;
+    border-radius: 12px;
+    padding:  30px 40px;
+    border: 2px solid var(--line-clr);
+    backdrop-filter: blur(20px); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.37); 
+    margin: 20px 0 20px 0;
+}
+.news .wrapper-2 .wrapper-inner{
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+
+}
+.news .wrapper-2 .wrapper-inner-2{
+    width: 100% !important;            
+    box-sizing: border-box;
+    flex: 0 0 100%;             
+    margin: 0 auto; 
+    border: var(--accent-clr) solid 5px;
+    background-color: #13a97767;
+    padding: 50px;
+}
+.news .wrapper-2 .wrapper-inner-2 h2{
+    border-bottom: 5px solid var(--accent-clr);
+    padding-bottom: 1em;
+    font-size: 2em;
+    font-variant: small-caps;
+
+}
+.news .wrapper-2 .wrapper-inner-2 p{
+    text-align: justify;
+    color: #ffffff;
+    font-size: 1.2em;
+    margin-top: 1em;
 }
 /* .wrapper-2 .wrapper-inner-2:last-child{
     border-bottom: none;
