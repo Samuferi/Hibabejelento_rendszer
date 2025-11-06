@@ -16,7 +16,6 @@ function authenticateToken(req, res, next) {
     const token = authHeader && authHeader.split(" ")[1];
 
     //console.log("Kapott Authorization header:", authHeader);
-    //console.log("Kivágott token:", token); 
 
     if (!token) return res.sendStatus(401);
 
@@ -53,7 +52,7 @@ router.get("/fonok", authenticateToken, (req, res) => {
 });
 
 router.get("/munkatars", authenticateToken, (req, res) => {
-  if (req.user.role !== "munkatars" && req.user.role !== "admin") {
+  if (req.user.role !== "ugyintezo" && req.user.role !== "admin") {
     return res.status(403).json({ message: "Nincs jogosultság!" });
   }
   // Frontend fogja betölteni az munkatars.html-t

@@ -44,10 +44,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (userRole === "admin") {
       document.getElementById("admin").style.display = "block";
       document.getElementById("fonok").style.display = "block";
+      document.getElementById("munkatars").style.display = "block";
     } else if (userRole === "fonok") {
       document.getElementById("admin").style.display = "none";
+      document.getElementById("munkatars").style.display = "none";
       document.getElementById("fonok").style.display = "block";
-    }else if (userRole === "munkatars") {
+    }else if (userRole === "ugyintezo") {
       document.getElementById("admin").style.display = "none";
       document.getElementById("fonok").style.display = "none";
       document.getElementById("munkatars").style.display = "block";
@@ -112,7 +114,7 @@ document.getElementById("fonok-link").addEventListener("click", async (e) => {
 document.getElementById("munkatars-link").addEventListener("click", async (e) => {
   e.preventDefault();
   const token = localStorage.getItem("token");
-
+  console.log("Token a munkatárs linknél:", token);
   const response = await fetch("/index/munkatars", {
     method: "GET",
     headers: {
@@ -123,7 +125,7 @@ document.getElementById("munkatars-link").addEventListener("click", async (e) =>
   if (response.ok) {
     window.location.href = "/pages/munkatars.html";
   } else if (response.status === 403) {
-    alert("Nincs jogosultság a vezetői felülethez!");
+    alert("Nincs jogosultság az ügyintézői felülethez!");
   } else if (response.status === 401) {
     alert("Nem vagy bejelentkezve!");
   } else {
