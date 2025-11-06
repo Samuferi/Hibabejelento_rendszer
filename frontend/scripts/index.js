@@ -114,7 +114,6 @@ document.getElementById("fonok-link").addEventListener("click", async (e) => {
 document.getElementById("munkatars-link").addEventListener("click", async (e) => {
   e.preventDefault();
   const token = localStorage.getItem("token");
-  console.log("Token a munkatárs linknél:", token);
   const response = await fetch("/index/munkatars", {
     method: "GET",
     headers: {

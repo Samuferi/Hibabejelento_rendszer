@@ -28,31 +28,7 @@ async function loadProblems() {
         if (!res2.ok) throw new Error("Hiba a dolgozók lekérésében!");
         const employees = await res2.json();
 
-            const res3 = await fetch("/api/fonok/activeProblems", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
-                "Content-Type": "application/json"
-            }
-            });
-            if (!res3.ok) {
-                throw new Error("Hiba az aktív problémák lekérésében!");
-            }
-            const problems = await res.json();
-
-            const res2 = await fetch("/api/employees", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
-                "Content-Type": "application/json"
-            }
-            });
-            if (!res2.ok) {
-                throw new Error("Hiba a dolgozók lekérésében!");
-            }
-            const employes = await res2.json();
-
-            const res3 = await fetch("/api/activeProblems", {
+        const res3 = await fetch("/api/fonok/activeProblems", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
@@ -64,21 +40,8 @@ async function loadProblems() {
             }
             const activeProblems = await res3.json();
 
-            const res4 = await fetch("/api/resolvedProblems", {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
-                "Content-Type": "application/json"
-            }
-            });
-            if (!res4.ok) {
-                throw new Error("Hiba a megoldott problémák lekérésében!");
-            }
-            const resolvedProblems = await res4.json();
-
-            
             /* const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
-            const problems = await res.json();
+            const problems = await res.json();*/
 
             const res4 = await fetch("/api/fonok/resolvedProblems", {
             method: "GET",
@@ -91,7 +54,7 @@ async function loadProblems() {
                 throw new Error("Hiba a megoldott problémák lekérésében!");
             }
             const resolvedProblems = await res4.json();
-
+            /*
             const res3 = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
             const activeProblems = await res3.json();
 
