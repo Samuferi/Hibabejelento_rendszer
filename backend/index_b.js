@@ -41,8 +41,7 @@ router.get("/admin", authenticateToken, (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ message: "Nincs jogosultság!" });
   }
-  // Frontend fogja betölteni az admin.html-t
-  res.sendFile(path.join(__dirname, "../frontend/pages/admin.html"));
+  res.status(200).json({ message: "Üdvözlünk az admin felületen!" });
 });
 
 router.get("/fonok", authenticateToken, (req, res) => {
@@ -50,6 +49,14 @@ router.get("/fonok", authenticateToken, (req, res) => {
     return res.status(403).json({ message: "Nincs jogosultság!" });
   }
   // Frontend fogja betölteni az fonok.html-t
-  res.sendFile(path.join(__dirname, "../frontend/pages/fonok.html"));
+  res.status(200).json({ message: "Üdvözlünk az vezetői felületen!" });
+});
+
+router.get("/munkatars", authenticateToken, (req, res) => {
+  if (req.user.role !== "munkatars" && req.user.role !== "admin") {
+    return res.status(403).json({ message: "Nincs jogosultság!" });
+  }
+  // Frontend fogja betölteni az munkatars.html-t
+  res.status(200).json({ message: "Üdvözlünk az munkatárs felületen!" });
 });
 export default router;

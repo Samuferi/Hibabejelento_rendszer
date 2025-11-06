@@ -72,11 +72,7 @@ document.getElementById("admin-link").addEventListener("click", async (e) => {
   });
 
   if (response.ok) {
-    const html = await response.text(); 
-    document.open();                     
-    document.write(html);                
-    document.close();                    
-    window.history.pushState({}, "", "/index/admin");
+    window.location.href = "./pages/admin.html";
   } else if (response.status === 403) {
     alert("Nincs jogosultság a vezetői felülethez!");
   } else if (response.status === 401) {
@@ -98,11 +94,29 @@ document.getElementById("fonok-link").addEventListener("click", async (e) => {
   });
 
   if (response.ok) {
-    const html = await response.text(); 
-    document.open();                     
-    document.write(html);                
-    document.close();                    
-    window.history.pushState({}, "", "/index/fonok");
+    window.location.href = "./pages/fonok.html";
+  } else if (response.status === 403) {
+    alert("Nincs jogosultság a vezetői felülethez!");
+  } else if (response.status === 401) {
+    alert("Nem vagy bejelentkezve!");
+  } else {
+    alert("Ismeretlen hiba történt a betöltésnél!");
+  }
+});
+
+document.getElementById("munkatars-link").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem("token");
+
+  const response = await fetch("/index/munkatars", {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    }
+  });
+
+  if (response.ok) {
+    window.location.href = "./pages/munkatars.html";
   } else if (response.status === 403) {
     alert("Nincs jogosultság a vezetői felülethez!");
   } else if (response.status === 401) {
