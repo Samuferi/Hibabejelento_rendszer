@@ -21,17 +21,24 @@ async function loadUserProps() {
         
         /* const res = await fetch("/frontend/scripts/test_jsons/user.json"); // Node.js backend endpoint
         const user = await res.json(); */
-        const user = localStorage.getItem("user");
+        const user = JSON.parse(localStorage.getItem("user"));
+        console.log("Felhasználói adatok betöltve:", user);
 
         const form = document.getElementById("userForm");
         const userFNameInput = document.getElementById("fname");
         const userLNameInput = document.getElementById("lname");
         const emailInput = document.getElementById("email");
         const phoneInput = document.getElementById("phone");
-        userFNameInput.placeholder = user.keresztnev;
-        userLNameInput.placeholder = user.vezeteknev;
-        emailInput.placeholder = user.email;
-        phoneInput.placeholder = user.phone;
+        const postCode = document.getElementById("postcode");
+        const city = document.getElementById("city");
+        const address = document.getElementById("address");
+        userFNameInput.placeholder = user["keresztnev"];
+        userLNameInput.placeholder = user["vezeteknev"];
+        emailInput.placeholder = user["email"];
+        phoneInput.placeholder = user["telefon"];
+        postCode.placeholder = user["irsz"];
+        city.placeholder = user["telepules"];
+        address.placeholder = user["cim"];
 
     } catch (err) {
         console.error("Hiba a betöltésnél:", err);

@@ -79,6 +79,10 @@ router.post('/login', async (req, res) => {
         vezeteknev: user.vezeteknev,
         keresztnev: user.keresztnev,
         email: user.email,
+        telefon: user.telefon,
+        irsz: user.irsz,
+        telepules: user.telepules,
+        cim: user.cim,
         role: user.role
       }
     });
