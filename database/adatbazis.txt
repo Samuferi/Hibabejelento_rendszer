@@ -52,5 +52,6 @@ CREATE TABLE news (
     news_id INT AUTO_INCREMENT PRIMARY KEY,
     cim VARCHAR(150),
     datum DATETIME DEFAULT CURRENT_TIMESTAMP,
-    tartalom TEXT
+    tartalom TEXT,
+    kep_url VARCHAR(255)
 );
