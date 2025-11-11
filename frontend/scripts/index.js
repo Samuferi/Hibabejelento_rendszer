@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", async () => {
+/* document.addEventListener("DOMContentLoaded", async () => {
   // 1️⃣ Token beolvasása a localStorage-ból
   const token = localStorage.getItem("token");
 
@@ -131,3 +131,4 @@ document.getElementById("munkatars-link").addEventListener("click", async (e) =>
     alert("Ismeretlen hiba történt a betöltésnél!");
   }
 });
+ */

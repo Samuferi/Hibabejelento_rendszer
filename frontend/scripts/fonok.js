@@ -1,6 +1,6 @@
 async function loadProblems() {
     try {
-        const token = localStorage.getItem("token");
+        /* const token = localStorage.getItem("token");
         if (!token) {
             alert(" Nem vagy bejelentkezve!");
             return;
@@ -38,12 +38,12 @@ async function loadProblems() {
         if (!res3.ok) {
             throw new Error("Hiba az aktív problémák lekérésében!");
         }
-        const activeProblems = await res3.json();
+        const activeProblems = await res3.json(); */
 
-            /* const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
-            const problems = await res.json();*/
+        const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+        const problems = await res.json();
 
-        const res4 = await fetch("/api/fonok/resolvedProblems", {
+        /* const res4 = await fetch("/api/fonok/resolvedProblems", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
@@ -53,13 +53,13 @@ async function loadProblems() {
         if (!res4.ok) {
             throw new Error("Hiba a megoldott problémák lekérésében!");
         }
-        const resolvedProblems = await res4.json();
-        /*
+        const resolvedProblems = await res4.json(); */
+        
         const res3 = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
         const activeProblems = await res3.json();
 
         const res4 = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
-        const resolvedProblems = await res4.json(); */
+        const resolvedProblems = await res4.json();
 
         const container = document.getElementById("problems-container");
         container.innerHTML = ""; // töröljük a régit
