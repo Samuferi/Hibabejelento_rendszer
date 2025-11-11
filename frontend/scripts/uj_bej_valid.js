@@ -63,7 +63,7 @@ if(form){
             errorMessage.innerText = errors.join(" ");
             return;
         }
-        e.preventDefault();
+        //e.preventDefault();
 
         const token = localStorage.getItem("token"); // 🔹 Token lekérése
         if (!token) {
