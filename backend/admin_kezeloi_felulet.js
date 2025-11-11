@@ -77,7 +77,7 @@ router.get("/allproblems", authenticateToken, async (req, res) => {
   
   try {
         const [rows] = await db.query(`
-            SELECT p.problem_id, p.helyszin, p.idopont, p.leiras, p.kep_url, p.assigned_to,  CONCAT(a.vezeteknev, ' ', a.keresztnev) AS assigned_name, p.status, CONCAT(u.vezeteknev, ' ', u.keresztnev) AS user
+            SELECT p.problem_id, p.helyszin, p.idopont, p.leiras, p.kep_url, p.assigned_to,  CONCAT(a.vezeteknev, ' ', a.keresztnev) AS assigned_name, p.status, p.ugyfelszolg_megjegy, CONCAT(u.vezeteknev, ' ', u.keresztnev) AS user
             FROM problems p
             JOIN user_problems up ON up.problem_id = p.problem_id
             JOIN users u ON u.user_id = up.user_id
