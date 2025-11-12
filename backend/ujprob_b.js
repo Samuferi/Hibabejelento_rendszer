@@ -66,9 +66,9 @@ router.post("/", verifyToken, upload.single("images"), async (req, res) => {
   }
 
   try {
-    const conn = await db.getConnection();
+    
 
-    const [result] = await conn.execute(
+    const [result] = await db.query(
       `INSERT INTO problems (helyszin, leiras, idopont, kep_url, status)
        VALUES (?, ?, ?, ?, 'Felvéve')`,
       [location, details, datetime, kep_fajl]
@@ -76,12 +76,11 @@ router.post("/", verifyToken, upload.single("images"), async (req, res) => {
 
     const problem_id = result.insertId;
 
-    await conn.execute(
+    await db.query(
       `INSERT INTO user_problems (user_id, problem_id) VALUES (?, ?)`,
       [user_id, problem_id]
     );
 
-    conn.release();
 
     res.status(201).json({
       message: "Bejelentés sikeresen rögzítve!",
