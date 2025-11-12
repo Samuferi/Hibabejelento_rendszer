@@ -98,7 +98,7 @@ async function loadNewProblems() {
                         throw new Error("Hiba a dolgozó hozzárendelésénél!");
                     }
                     const result = await res.json();
-                    alert("✅ Sikeresen hozzárendelted a dolgozót!");
+                    alert("✅ Probléma elküldve/frissítve!");
                 } catch (error) {
                     console.error("Hiba:", error);
                 }
