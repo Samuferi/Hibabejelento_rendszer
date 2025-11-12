@@ -58,4 +58,13 @@ router.get("/munkatars", authenticateToken, (req, res) => {
   // Frontend fogja betölteni az munkatars.html-t
   res.status(200).json({ message: "Üdvözlünk az munkatárs felületen!" });
 });
+
+router.get("/uj_hir", authenticateToken, (req, res) => {
+  if (req.user.role !== "fonok" && req.user.role !== "admin") {
+    return res.status(403).json({ message: "Nincs jogosultság!" });
+  }
+  
+  res.status(200).json({ message: "Üdvözlünk az új hír felvétele felüleleten!" });
+});
+
 export default router;

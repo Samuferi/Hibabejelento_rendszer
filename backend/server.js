@@ -10,6 +10,7 @@ import profileRoutes from "./fiok_kez_b.js";
 import adminRoutes from "./admin_kezeloi_felulet.js";
 import fonokRoutes from "./fonok_felulet_b.js";
 import munkatarsRoutes from "./munkatars_felulet_b.js";
+import ujhirRoutes from "./hirfelvetel_b.js";
 
 
 
@@ -68,6 +69,7 @@ app.use("/api/profile", profileRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/fonok", fonokRoutes);
 app.use("/api/munkatars", munkatarsRoutes);
+app.use("/api/ujhir", ujhirRoutes);
 
 // szerver indítása
 app.listen(3000, () => {
