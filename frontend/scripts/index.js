@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       ujhirEl?.style && (ujhirEl.style.display = "block");
     } else if (userRole === "fonok") {
       adminEl?.style && (adminEl.style.display = "none");
-      fonokEl?.style && (fonokEl.style.display = "block");
       munkatarsEl?.style && (munkatarsEl.style.display = "none");
+      fonokEl?.style && (fonokEl.style.display = "block");
       ujhirEl?.style && (ujhirEl.style.display = "block");
     } else if (userRole === "ugyintezo") {
       adminEl?.style && (adminEl.style.display = "none");
