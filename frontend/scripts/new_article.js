@@ -98,7 +98,7 @@ if(form){
         const data = await res.json();
         if (res.ok) {
             alert("✅ Sikeres problémafelvétel!");
-            document.getElementById("problemForm").reset();
+            form.reset();
         } else {
             alert("❌ Hiba: " + data.message);
         }

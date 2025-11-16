@@ -76,10 +76,7 @@ router.post("/felvetel", verifyToken, upload.single("images"), async (req, res) 
 
 
     res.status(201).json({
-      message: "Bejelentés sikeresen rögzítve!",
-      problem_id: problem_id,
-      status: "Felvéve",
-      kep: kep_fajl,
+      message: "Bejelentés sikeresen rögzítve!"
     });
   } catch (err) {
     console.error("Adatbázis hiba:", err);

@@ -40,28 +40,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     const userRole = data.role;
 
     
+    const adminEl = document.getElementById("admin");
+    const fonokEl = document.getElementById("fonok");
+    const munkatarsEl = document.getElementById("munkatars");
+    const ujhirEl = document.getElementById("uj_hir");
 
     if (userRole === "admin") {
-      document.getElementById("admin").style.display = "block";
-      document.getElementById("fonok").style.display = "block";
-      document.getElementById("munkatars").style.display = "block";
-      document.getElementById("uj_hir").style.display = "block";
+      adminEl?.style && (adminEl.style.display = "block");
+      fonokEl?.style && (fonokEl.style.display = "block");
+      munkatarsEl?.style && (munkatarsEl.style.display = "block");
+      ujhirEl?.style && (ujhirEl.style.display = "block");
     } else if (userRole === "fonok") {
-      document.getElementById("admin").style.display = "none";
-      document.getElementById("munkatars").style.display = "none";
-      document.getElementById("fonok").style.display = "block";
-      document.getElementById("uj_hir").style.display = "block";
-    }else if (userRole === "ugyintezo") {
-      document.getElementById("admin").style.display = "none";
-      document.getElementById("fonok").style.display = "none";
-      document.getElementById("munkatars").style.display = "block";
-      document.getElementById("uj_hir").style.display = "none";
+      adminEl?.style && (adminEl.style.display = "none");
+      fonokEl?.style && (fonokEl.style.display = "block");
+      munkatarsEl?.style && (munkatarsEl.style.display = "none");
+      ujhirEl?.style && (ujhirEl.style.display = "block");
+    } else if (userRole === "ugyintezo") {
+      adminEl?.style && (adminEl.style.display = "none");
+      fonokEl?.style && (fonokEl.style.display = "none");
+      munkatarsEl?.style && (munkatarsEl.style.display = "block");
+      ujhirEl?.style && (ujhirEl.style.display = "none");
     } else {
-      document.getElementById("admin").style.display = "none";
-      document.getElementById("fonok").style.display = "none";
-      document.getElementById("munkatars").style.display = "none";
-      document.getElementById("uj_hir").style.display = "none";
+      adminEl?.style && (adminEl.style.display = "none");
+      fonokEl?.style && (fonokEl.style.display = "none");
+      munkatarsEl?.style && (munkatarsEl.style.display = "none");
+      ujhirEl?.style && (ujhirEl.style.display = "none");
     }
+
 
   } catch (err) {
     console.error("Hiba az authentikáció során:", err);
