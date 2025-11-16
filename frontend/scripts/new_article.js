@@ -27,7 +27,7 @@ async function loadUserName() {
         const lastNameInput = document.getElementById("lname");
         const userIdInput = document.getElementById("userid");
 
-        userIdInput.value = user.id; 
+        userIdInput.value = user.user_id; 
         lastNameInput.value = user.vezeteknev;
         firstNameInput.value = user.keresztnev; 
 
@@ -39,7 +39,7 @@ window.addEventListener("DOMContentLoaded", () => {
 // 🔹 Változók a form elemeihez
 const form = document.getElementById("articleForm"); 
 const title = document.getElementById("title");
-const image = document.getElementById("img");
+const images = document.getElementById("img");
 const content = document.getElementById("content");
 const errorMessage = document.getElementById("error-message");
 
@@ -70,16 +70,16 @@ if(form){
             alert("⚠️ Nem vagy bejelentkezve. Jelentkezz be újra!");
             return;
         }
-        const date= new Date().toISOString();
+        const date= new Date();
         let day = date.getDate();
         let month = date.getMonth() + 1;
         let year = date.getFullYear();
-        let currentDate = `${day}-${month}-${year}`;
+        let currentDate = `${year}-${month}-${day}`;
 
         const formData = new FormData();
         formData.append("userid", document.getElementById("userid").value);
-        formData.append("title", location.value);
-        formData.append("content", description.value);
+        formData.append("title", title.value);
+        formData.append("content", content.value);
         formData.append("date", currentDate);
 
         if (images.files.length > 0) {
@@ -87,7 +87,7 @@ if(form){
         }
 
         try {
-        const res = await fetch("/api/newproblems", {
+        const res = await fetch("/api/ujhir/felvetel", {
             method: "POST",
             headers: { 
                 "Authorization": `Bearer ${token}`
@@ -98,7 +98,7 @@ if(form){
         const data = await res.json();
         if (res.ok) {
             alert("✅ Sikeres problémafelvétel!");
-            document.getElementById("problemForm").reset();
+            form.reset();
         } else {
             alert("❌ Hiba: " + data.message);
         }

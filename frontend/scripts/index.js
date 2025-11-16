@@ -40,24 +40,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     const userRole = data.role;
 
     
+    const adminEl = document.getElementById("admin");
+    const fonokEl = document.getElementById("fonok");
+    const munkatarsEl = document.getElementById("munkatars");
+    const ujhirEl = document.getElementById("uj_hir");
 
     if (userRole === "admin") {
-      document.getElementById("admin").style.display = "block";
-      document.getElementById("fonok").style.display = "block";
-      document.getElementById("munkatars").style.display = "block";
+      adminEl?.style && (adminEl.style.display = "block");
+      fonokEl?.style && (fonokEl.style.display = "block");
+      munkatarsEl?.style && (munkatarsEl.style.display = "block");
+      ujhirEl?.style && (ujhirEl.style.display = "block");
     } else if (userRole === "fonok") {
-      document.getElementById("admin").style.display = "none";
-      document.getElementById("munkatars").style.display = "none";
-      document.getElementById("fonok").style.display = "block";
-    }else if (userRole === "ugyintezo") {
-      document.getElementById("admin").style.display = "none";
-      document.getElementById("fonok").style.display = "none";
-      document.getElementById("munkatars").style.display = "block";
+      adminEl?.style && (adminEl.style.display = "none");
+      munkatarsEl?.style && (munkatarsEl.style.display = "none");
+      fonokEl?.style && (fonokEl.style.display = "block");
+      ujhirEl?.style && (ujhirEl.style.display = "block");
+    } else if (userRole === "ugyintezo") {
+      adminEl?.style && (adminEl.style.display = "none");
+      fonokEl?.style && (fonokEl.style.display = "none");
+      munkatarsEl?.style && (munkatarsEl.style.display = "block");
+      ujhirEl?.style && (ujhirEl.style.display = "none");
     } else {
-      document.getElementById("admin").style.display = "none";
-      document.getElementById("fonok").style.display = "none";
-      document.getElementById("munkatars").style.display = "none";
+      adminEl?.style && (adminEl.style.display = "none");
+      fonokEl?.style && (fonokEl.style.display = "none");
+      munkatarsEl?.style && (munkatarsEl.style.display = "none");
+      ujhirEl?.style && (ujhirEl.style.display = "none");
     }
+
 
   } catch (err) {
     console.error("Hiba az authentikáció során:", err);
@@ -131,3 +140,26 @@ document.getElementById("munkatars-link").addEventListener("click", async (e) =>
     alert("Ismeretlen hiba történt a betöltésnél!");
   }
 });
+
+document.getElementById("uj_hir-link").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem("token");
+
+  const response = await fetch("/index/uj_hir", {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    }
+  });
+
+  if (response.ok) {
+    window.location.href = "/pages/hirfelvetel.html";
+  } else if (response.status === 403) {
+    alert("Nincs jogosultság az új hír felvételéhez!");
+  } else if (response.status === 401) {
+    alert("Nem vagy bejelentkezve!");
+  } else {
+    alert("Ismeretlen hiba történt a betöltésnél!");
+  }
+});
+
