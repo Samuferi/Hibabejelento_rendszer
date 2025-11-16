@@ -11,6 +11,7 @@ import adminRoutes from "./admin_kezeloi_felulet.js";
 import fonokRoutes from "./fonok_felulet_b.js";
 import munkatarsRoutes from "./munkatars_felulet_b.js";
 import ujhirRoutes from "./hirfelvetel_b.js";
+import hirekRoutes from "./hirek_b.js";
 
 
 
@@ -58,6 +59,10 @@ app.get("/profile", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/pages/fiok_kez.html"));
 });
 
+app.get("/news", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/pages/hirek.html"));
+});
+
 // login route-ok
 app.use("/api", loginRoutes);
 // probléma bejelentő route-ok
@@ -70,6 +75,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/fonok", fonokRoutes);
 app.use("/api/munkatars", munkatarsRoutes);
 app.use("/api/ujhir", ujhirRoutes);
+app.use("/api/news", hirekRoutes);
 
 // szerver indítása
 app.listen(3000, () => {
