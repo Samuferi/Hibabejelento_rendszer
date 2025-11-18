@@ -148,7 +148,7 @@ async function loadProblems() {
         // --- Eseménykezelők ---
         document.querySelectorAll('[id^="worker-form-"]').forEach(form => {
             form.addEventListener('submit', async (e) => {
-                //e.preventDefault();
+                e.preventDefault();
                 const problemId = e.target.querySelector('button').getAttribute('data-id');
                 const workerSelect = document.getElementById(`worker-${problemId}`);
                 const workerId = workerSelect.value;

@@ -52,41 +52,31 @@ function verifyToken(req, res, next) {
 
 // -------------------- ÚJ PROBLÉMA FELVÉTEL --------------------
 // fájlfeltöltés + token ellenőrzés
-router.post("/", verifyToken, upload.single("images"), async (req, res) => {
-  //console.log("📸 Fájl:", req.file);
-  //console.log("📋 Body:", req.body);
+router.post("/felvetel", verifyToken, upload.single("images"), async (req, res) => {
   
-  const { location, details, datetime } = req.body;
+  const { title, date, content } = req.body;
   const user_id = req.user.user_id; // tokenből jön
   const kep_fajl = req.file ? `/uploads/${req.file.filename}` : null;
 
 
-  if (!location || !details || !datetime) {
+  if (!title || !content || !date) {
     return res.status(400).json({ error: "Hiányzó adatok!" });
   }
 
   try {
     
 
-    const [result] = await db.query(
-      `INSERT INTO problems (helyszin, leiras, idopont, kep_url, status)
-       VALUES (?, ?, ?, ?, 'Felvéve')`,
-      [location, details, datetime, kep_fajl]
-    );
-
-    const problem_id = result.insertId;
-
     await db.query(
-      `INSERT INTO user_problems (user_id, problem_id) VALUES (?, ?)`,
-      [user_id, problem_id]
+      `INSERT INTO news (cim, datum, tartalom, kep_url)
+       VALUES (?, ?, ?, ?)`,
+      [title, date, content, kep_fajl]
     );
+
+    
 
 
     res.status(201).json({
-      message: "Bejelentés sikeresen rögzítve!",
-      problem_id: problem_id,
-      status: "Felvéve",
-      kep: kep_fajl,
+      message: "Bejelentés sikeresen rögzítve!"
     });
   } catch (err) {
     console.error("Adatbázis hiba:", err);
