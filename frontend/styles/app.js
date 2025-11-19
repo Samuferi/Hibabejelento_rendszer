@@ -8,17 +8,16 @@ function toggleSidebar() {
     closeAllSubMenus();
 }
 
-
 function toggleSubMenu(button) {
 
-    if(!button.nextElementSibling.classList.contains("show")) {
+    if (!button.nextElementSibling.classList.contains("show")) {
         closeAllSubMenus();
     }
 
     button.nextElementSibling.classList.toggle("show");
     button.classList.toggle("rotate");
 
-    if(sidebar.classList.contains("close")) {
+    if (sidebar.classList.contains("close")) {
         sidebar.classList.toggle("close");
         toggleButton.classList.toggle("rotate");
     }
@@ -33,7 +32,7 @@ function closeAllSubMenus() {
 
 document.addEventListener("click", function (event) {
     const profileMenu = document.querySelector(".profile-menu");
-    if (!profileMenu) return; 
+    if (!profileMenu) return;
 
     const profileButton = profileMenu.querySelector(".profile-btn");
     const profileSubMenu = profileMenu.querySelector(".sub-menu");
@@ -47,35 +46,30 @@ document.addEventListener("click", function (event) {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+
     const adminTabs = document.querySelectorAll(".admin-tab");
+
+    const sectionMap = {
+        employees: document.querySelector(".wrapper-employees"),
+        problems: document.querySelector(".wrapper-2"),
+        "new-employee": document.querySelector(".wrapper"),
+        users: document.getElementById("users-wrapper")
+    };
 
     adminTabs.forEach(tab => {
         tab.addEventListener("click", e => {
             e.preventDefault();
-            const target = tab.dataset.target;
 
-            let targetElement = null;
-            if (target === "employees") targetElement = document.querySelector(".wrapper-employees");
-            if (target === "problems") targetElement = document.querySelector(".wrapper-2");
-            if (target === "new-employee") targetElement = document.querySelector(".wrapper");
+            const target = tab.dataset.target;
+            const targetElement = sectionMap[target];
 
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
             }
 
-            const submenu = tab.closest(".sub-menu");
-            
         });
     });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    const adminTabs = document.querySelectorAll(".admin-tab");
-    const sectionMap = {
-        employees: document.querySelector(".wrapper-employees"),
-        problems: document.querySelector(".wrapper-2"),
-        "new-employee": document.querySelector(".wrapper")
-    };
 
     function setActiveTab(targetKey) {
         adminTabs.forEach(tab => {
@@ -89,9 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", () => {
         let currentSection = null;
-        let scrollY = window.scrollY + 150; 
+        let scrollY = window.scrollY + 200; 
 
         for (const [key, section] of Object.entries(sectionMap)) {
+            if (!section) continue;
+
             const rect = section.getBoundingClientRect();
             const top = rect.top + window.scrollY;
 
@@ -105,4 +101,5 @@ document.addEventListener("DOMContentLoaded", () => {
             setActiveTab(currentSection);
         }
     });
+
 });
