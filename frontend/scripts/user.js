@@ -1,7 +1,23 @@
 async function loadUsers() {
     try {
         // ⚠️ Backend API – ezt cseréld a saját végpontodra
-        const res = await fetch("/api/admin/users");
+        const token = localStorage.getItem("token"); // 🔸 Token lekérése
+        if (!token) {
+            alert("⚠️ Nem vagy bejelentkezve!");
+            return;
+        }
+        const res = await fetch("/api/admin/users", {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+            "Content-Type": "application/json"
+        }
+        }); 
+        if (!res.ok) {
+            throw new Error("Hiba a problémák lekérésében!");
+        } 
+        const users = await res.json();
+
 
         // Teszt JSON (ugyanúgy mint az employees.js-ben)
         /*
@@ -32,13 +48,13 @@ async function loadUsers() {
 
             tr.innerHTML = `
                 <td>${user.id}</td>
-                <td>${user.lastname}</td>
-                <td>${user.firstname}</td>
+                <td>${user.vezeteknev}</td>
+                <td>${user.keresztnev}</td>
                 <td>${user.email}</td>
-                <td>${user.postcode}</td>
-                <td>${user.city}</td>
-                <td>${user.address}</td>
-                <td>${user.phone}</td>
+                <td>${user.irsz}</td>
+                <td>${user.telepules}</td>
+                <td>${user.cim}</td>
+                <td>${user.telefon}</td>
                 <td>
                     <button class="deleteUserBtn" data-id="${user.id}" style="
                         background-color: #c0392b;
@@ -72,8 +88,12 @@ async function deleteUser(e) {
 
     if (!confirm("Biztos törlöd ezt a felhasználót?")) return;
 
-    const res = await fetch(`/api/users/${id}`, {
-        method: "DELETE"
+    const res = await fetch(`/api/admin/users/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json"
+        } 
     });
 
     if (res.ok) {
