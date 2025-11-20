@@ -111,7 +111,7 @@ router.get("/resolvedProblems", authenticateToken, async (req, res) => {
             JOIN user_problems up ON up.problem_id = p.problem_id
             JOIN users u ON u.user_id = up.user_id
             LEFT JOIN users a ON a.user_id = p.assigned_to
-            WHERE p.status = "Megoldva"
+            WHERE p.status = "Kész" or p.status = "Elutasítva"
             ORDER BY p.idopont DESC
     `);
     res.json(problems);
