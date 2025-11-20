@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
+import mysql from "mysql2/promise";
 
 
 
@@ -33,7 +34,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-router.post("/forgot-password", async (req, res) => {
+router.post("/", async (req, res) => {
     const { email } = req.body;
 
     if (!email) return res.status(400).json({ msg: "Email kötelező!" });
