@@ -160,5 +160,16 @@ router.delete("/users/:id", authenticateToken, async (req, res) => {
   }
 });
 
+router.delete("/allemployees/:id", authenticateToken, async (req, res) => {
+  const userId = req.params.id;
+  try {
+    await db.query("DELETE FROM users WHERE user_id = ?", [userId]);
+    res.status(200).json({ message: "Munkatárs sikeresen törölve." });
+  } catch (err) {
+    console.error("❌ Hiba a munkatárs törlésekor:", err);
+    res.status(500).json({ message: "Szerverhiba a munkatárs törlésekor." });
+  }
+});
+
 
 export default router;
