@@ -1,11 +1,11 @@
 async function loadEmployees() {
         try {
-            /* const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); // 🔸 Token lekérése
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
             }
-             const res = await fetch("/api/admin/allemployees", {
+            const res = await fetch("/api/admin/allemployees", {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
@@ -15,11 +15,12 @@ async function loadEmployees() {
             if (!res.ok) {
                 throw new Error("Hiba a problémák lekérésében!");
             } 
-            const employees = await res.json(); */
-           
-            const res = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
             const employees = await res.json();
 
+           /*
+            const res = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
+            const employees = await res.json();
+            */
             const container = document.getElementById("employeesTable");
             container.innerHTML = `
                 <tr>

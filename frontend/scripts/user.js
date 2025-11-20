@@ -1,11 +1,15 @@
 async function loadUsers() {
     try {
         // ⚠️ Backend API – ezt cseréld a saját végpontodra
-        // const res = await fetch("/api/users");
+        const res = await fetch("/api/admin/users");
 
         // Teszt JSON (ugyanúgy mint az employees.js-ben)
+        /*
         const res = await fetch("/frontend/scripts/test_jsons/users.json");
         const users = await res.json();
+        */
+
+
 
         const container = document.getElementById("usersTable");
 
