@@ -1,0 +1,113 @@
+[
+    {
+        "id": 1,
+        "firstname": "Alíz",
+        "lastname": "Tóth",
+        "email": "aliz@example.com",
+        "postcode": "12345",
+        "city": "Budapest",
+        "address": "Fő utca 1.",
+        "phone": "+36123456789"
+    },
+    {
+        "id": 2,
+        "firstname": "Béla",
+        "lastname": "Nagy",
+        "email": "bela@example.com",
+        "postcode": "54321",
+        "city": "Debrecen",
+        "address": "Kossuth utca 2.",
+        "phone": "+36201234567"
+    },
+    {
+        "id": 3,
+        "firstname": "Csilla",
+        "lastname": "Szabó",
+        "email": "csilla@example.com",
+        "postcode": "67890",
+        "city": "Szeged",
+        "address": "Petőfi utca 3.",
+        "phone": "+36301234567"
+    },
+    {
+        "id": 4,
+        "firstname": "Dávid",
+        "lastname": "Kiss",
+        "email": "david@example.com",
+        "postcode": "98765",
+        "city": "Pécs",
+        "address": "Rákóczi utca 4.",
+        "phone": "+36401234567"
+    },
+    {
+        "id": 5,
+        "firstname": "Eszter",
+        "lastname": "Horváth",
+        "email": "eszter@example.com",
+        "postcode": "11223",
+        "city": "Győr",
+        "address": "Váci utca 5.",
+        "phone": "+36501234567"
+    },
+    {
+        "id": 6,
+        "firstname": "Ferenc",
+        "lastname": "Molnár",
+        "email": "ferenc@example.com",
+        "postcode": "33445",
+        "city": "Miskolc",
+        "address": "Kossuth Lajos utca 6.",
+        "phone": "+36601234567"
+    },
+    {
+        "id": 7,
+        "firstname": "Gábor",
+        "lastname": "Varga",
+        "email": "gabor@example.com",
+        "postcode": "55667",
+        "city": "Székesfehérvár",
+        "address": "Vörösmarty utca 7.",
+        "phone": "+36701234567"
+    },
+    {
+        "id": 8,
+        "firstname": "Hanna",
+        "lastname": "Farkas",
+        "email": "hanna@example.com",
+        "postcode": "77889",
+        "city": "Kecskemét",
+        "address": "Széchenyi utca 8.",
+        "phone": "+36801234567"
+    },
+    {
+        "id": 9,
+        "firstname": "István",
+        "lastname": "Balogh",
+        "email": "istvan@example.com",
+        "postcode": "88990",
+        "city": "Nyíregyháza",
+        "address": "Kossuth utca 9.",
+        "phone": "+36901234567"
+    },
+    {
+        "id": 10,
+        "firstname": "Júlia",
+        "lastname": "Papp",
+        "email": "julia@example.com",
+        "postcode": "99001",
+        "city": "Szombathely",
+        "address": "Petőfi utca 10.",
+        "phone": "+36100123456"
+    },
+
+    {
+        "id": 11,
+        "firstname": "Károly",
+        "lastname": "Tímár",
+        "email": "karoly@example.com",
+        "postcode": "10101",
+        "city": "Eger",
+        "address": "Dobó utca 11.",
+        "phone": "+36200123456"
+    }
+]

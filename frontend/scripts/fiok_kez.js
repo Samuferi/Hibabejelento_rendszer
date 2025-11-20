@@ -2,25 +2,8 @@
 
 async function loadUserProps() {
     try {
-        const token = localStorage.getItem("token"); // 🔸 Token lekérése
-        if (!token) {
-            alert("⚠️ Nem vagy bejelentkezve!");
-            return;
-        }
-            const res = await fetch("/api/problems", {
-        method: "GET",
-        headers: {
-            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
-            "Content-Type": "application/json"
-        }
-        }); 
-        if (!res.ok) {
-            throw new Error("Hiba a problémák lekérésében!");
-        }
-        const problems = await res.json();
         
-        /* const res = await fetch("/frontend/scripts/test_jsons/user.json"); // Node.js backend endpoint
-        const user = await res.json(); */
+
         const user = JSON.parse(localStorage.getItem("user"));
         console.log("Felhasználói adatok betöltve:", user);
 
@@ -121,7 +104,21 @@ if(form){
         const data = await res.json();
         if (res.ok) {
             alert("✅ Sikeres változtatás!");
-            document.getElementById("userForm").reset();
+
+            
+            const user =  JSON.parse(localStorage.getItem("user"));
+            userFName?.value?.trim() && (user["keresztnev"] = userFName?.value) && console.log("keresztnev");
+            userLName?.value?.trim() && (user["vezeteknev"] = userLName?.value);
+            postCode?.value?.trim() && (user["irsz"] = postCode?.value);
+            city?.value?.trim() && (user["telepules"] = city?.value);
+            address?.value?.trim() && (user["cim"] = address?.value);
+            phone?.value?.trim() && (user["telefon"] = phone?.value);
+            email?.value?.trim() && (user["email"] = email?.value);
+
+            localStorage.setItem("user", JSON.stringify(user));
+            form.reset();
+            loadUserProps(); 
+
         } else {
             alert("❌ Hiba: " + data.message);
         }

@@ -120,4 +120,56 @@ router.get("/allemployees", authenticateToken, async (req, res) => {
 });
 
 
+router.get("/users", authenticateToken, async (req, res) => {
+  if (req.user.role !== "admin") {
+    return res.status(403).json({ message: "Nincs jogosultság!" });
+  }
+  try {
+  
+    const [rows] = await db.query(`
+      SELECT 
+        user_id AS id,
+        vezeteknev,
+        keresztnev,
+        email,
+        irsz,
+        telepules,
+        cim,
+        telefon,
+        role AS status
+      FROM users
+      WHERE role IN ('lakos')
+      ORDER BY user_id
+    `);
+    //console.log(rows);
+    res.json(rows);
+  } catch (err) {
+    console.error("❌ Hiba a munkatársak lekérdezésekor:", err);
+    res.status(500).json({ message: "Szerverhiba a munkatársak lekérésénél." });
+  }
+});
+
+router.delete("/users/:id", authenticateToken, async (req, res) => {
+  const userId = req.params.id;
+  try {
+    await db.query("DELETE FROM users WHERE user_id = ?", [userId]);
+    res.status(200).json({ message: "Felhasználó sikeresen törölve." });
+  } catch (err) {
+    console.error("❌ Hiba a felhasználó törlésekor:", err);
+    res.status(500).json({ message: "Szerverhiba a felhasználó törlésekor." });
+  }
+});
+
+router.delete("/allemployees/:id", authenticateToken, async (req, res) => {
+  const userId = req.params.id;
+  try {
+    await db.query("DELETE FROM users WHERE user_id = ?", [userId]);
+    res.status(200).json({ message: "Munkatárs sikeresen törölve." });
+  } catch (err) {
+    console.error("❌ Hiba a munkatárs törlésekor:", err);
+    res.status(500).json({ message: "Szerverhiba a munkatárs törlésekor." });
+  }
+});
+
+
 export default router;

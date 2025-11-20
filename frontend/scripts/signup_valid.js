@@ -11,6 +11,9 @@ const email = document.getElementById("email-input");                 // mindket
 const password = document.getElementById("password-input");           // mindkettő
 const repeatPassword = document.getElementById("repeat-password-input"); // csak signup
 const errorMessage = document.getElementById("error-message");
+// ÚJ CHECKBOX VÁLTOZÓK
+const adatvedelmi = document.getElementById("adatvedelmi");
+const aszf = document.getElementById("aszf");
 
 // 🔹 Hibakereső függvények
 function getSignupFormErrors(firstnameVal, lastnameVal, postnumVal, townVal, addressVal, phoneVal, emailVal, passwordVal, repeatPasswordVal){
@@ -35,6 +38,15 @@ if(form){
         let errors = [];
 
         errors = getSignupFormErrors(firstname.value, lastname.value, postnumber.value, town.value, address.value, phone.value, email.value, password.value, repeatPassword.value);
+
+        // kötelező chechbox ellenőrzés
+        if (adatvedelmi && !adatvedelmi.checked) {
+            errors.push("El kell fogadnia az Adatvédelmi tájékoztatót!");
+        }
+        
+        if (aszf && !aszf.checked) {
+            errors.push("El kell fogadnia az Általános Szerződési Feltételeket!");
+        }
 
         if(errors.length > 0){
             e.preventDefault();
