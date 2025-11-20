@@ -7,7 +7,7 @@ async function loadUserProps() {
             alert("⚠️ Nem vagy bejelentkezve!");
             return;
         }
-            const res = await fetch("/api/problems", {
+        const res = await fetch("/api/problems", {
         method: "GET",
         headers: {
             "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
