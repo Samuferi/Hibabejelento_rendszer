@@ -55,3 +55,12 @@ CREATE TABLE news (
     tartalom TEXT,
     kep_url VARCHAR(255)
 );
+-- Jelszó reset tábla
+CREATE TABLE password_reset (
+    reset_id INT AUTO_INCREMENT PRIMARY KEY,      
+    email VARCHAR(100) NOT NULL,                 
+    datum DATETIME NOT NULL,                     
+    user_id INT NOT NULL,                        
+    hash_jelszo_gen VARCHAR(255) DEFAULT NULL,    
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+);
