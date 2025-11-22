@@ -54,6 +54,8 @@ router.post("/", async (req, res) => {
         // Adatbázis update
         await db.query("UPDATE users SET jelszo_hash = ? WHERE email = ?", [hash, email]);
 
+        await db.query(`INSERT INTO password_reset (email, datum, user_id, hash_jelszo_gen) VALUES (?, NOW(), ?, ?)`,
+            [email, rows[0].user_id, hash]);
         // E-mail küldése
         const mailOptions = {
             from: "Hibabejelentő rendszer <it.hibabejelento@gmail.com>",
