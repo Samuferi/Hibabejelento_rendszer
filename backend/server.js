@@ -12,6 +12,7 @@ import fonokRoutes from "./fonok_felulet_b.js";
 import munkatarsRoutes from "./munkatars_felulet_b.js";
 import ujhirRoutes from "./hirfelvetel_b.js";
 import hirekRoutes from "./hirek_b.js";
+import forgotPasswordRoutes from "./password_forget_b.js";
 
 
 
@@ -37,6 +38,10 @@ app.use(express.static(path.join(__dirname, "../frontend")));
 
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/pages/login.html"));
+});
+
+app.get("/elfjelszo", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/pages/elf_jelszo.html"));
 });
 
 app.get("/signup", (req, res) => {
@@ -76,6 +81,7 @@ app.use("/api/fonok", fonokRoutes);
 app.use("/api/munkatars", munkatarsRoutes);
 app.use("/api/ujhir", ujhirRoutes);
 app.use("/api/news", hirekRoutes);
+app.use("/api/forgot-password", forgotPasswordRoutes);
 
 // szerver indítása
 app.listen(3000, () => {

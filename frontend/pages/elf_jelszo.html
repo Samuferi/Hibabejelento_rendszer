@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../styles/signup.css">
+    <!-- <script type="text/javascript" src="../styles/validation.js" defer></script>
+    <script type="module" src="../styles/login_token.js" defer></script> -->
+    <script type="module" src="../scripts/elf_jelszo.js" defer></script>
+    
+</head>
+<body>
+    <div class ="wrapper">
+        <h1>Elfelejtett jelszó</h1>
+        <p id="error-message"></p>
+        <form id="form">
+            <div>
+                <label for="email-input">
+                    <span>@</span>
+                </label>
+                <input type="email" name="email" placeholder="Email-cím" id ="email-input" required>
+            </div>
+            <button type="submit">Email küldése</button>
+
+        </form>
+
+        
+        <p><a href="/login">Vissza a bejelentkezéshez</a></p>
+    </div>
+    
+</body>
+</html>
