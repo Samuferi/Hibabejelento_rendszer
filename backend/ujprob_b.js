@@ -8,8 +8,7 @@ import { JWT_SECRET } from './config.js';
 
 const router = express.Router();
 
-// -------------------- MULTER KONFIG --------------------
-// ide kerülnek majd a feltöltött képek (pl. /uploads mappába)
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./uploads"); // 
@@ -21,7 +20,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// -------------------- ADATBÁZIS --------------------
+
 const db = await mysql.createPool({
   host: 'localhost',
   port: 3306,
@@ -29,13 +28,13 @@ const db = await mysql.createPool({
   password: 'Ocsi_2018',
   database: 'hibabejelento'
 });
-// -------------------- APP ALAP --------------------
+
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("/uploads", express.static("uploads")); // képek elérhetőek lesznek URL-en
+app.use("/uploads", express.static("uploads")); 
 
-// -------------------- TOKEN ELLENŐRZÉS --------------------
+
 function verifyToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   if (!authHeader) return res.status(401).json({ error: "Hiányzó token!" });
@@ -50,8 +49,7 @@ function verifyToken(req, res, next) {
   }
 }
 
-// -------------------- ÚJ PROBLÉMA FELVÉTEL --------------------
-// fájlfeltöltés + token ellenőrzés
+
 router.post("/", verifyToken, upload.single("images"), async (req, res) => {
   //console.log("📸 Fájl:", req.file);
   //console.log("📋 Body:", req.body);
