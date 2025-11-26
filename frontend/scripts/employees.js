@@ -29,6 +29,7 @@ async function loadEmployees() {
                     <th>Keresztnév</th>
                     <th>Email-cím</th>
                     <th>Munkakör</th>
+                    <th>Törlés</th>
                 </tr>
             `;
             employees.forEach(employee => {
