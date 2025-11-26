@@ -1,11 +1,11 @@
-/*// Token dekódolás (JWT payload kiolvasás)
+/* 
 import { parseJwt } from "./dec_token.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
     //console.log("LocalStorage token:", token);
     if (!token) {
-        // ha nincs token → login oldal
+        
         window.location.href = "/login";
         return;
     }
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const munLink = document.querySelector('a[href="munkatars.html"]');
     const adminLink = document.querySelector('a[href="admin.html"]');
     const hirfLink = document.querySelector('a[href="hirfelvetel.html"]');
-    // Ha NEM admin → elrejtjük az Admin menüpontot
+    
     switch (payload.role) {
         case "admin":
             
@@ -67,14 +67,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             break;
         default:
-            // ismeretlen szerep → logout
+            
             localStorage.removeItem("token");
             window.location.href = "/login";
             return;
 
     }
 
-    // Példa: backendhez lekérés user adatokhoz
+    
     /* fetch("/index/user", {
         headers: { Authorization: `Bearer ${token}` }
     })
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(data => {
             console.log("Felhasználó adatok:", data);
-            // ide jöhet pl. a DOM kitöltése usernévvel
+            
         })
         .catch(err => {
             console.error(err);

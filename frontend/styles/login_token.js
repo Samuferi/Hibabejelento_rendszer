@@ -29,10 +29,10 @@ window.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // 🔹 Token és felhasználó adatok tárolása
+      
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
-      // 🔹 Átirányítás az index.html-re
+      
       window.location.href = '/index';
     } catch (err) {
       console.error(err);

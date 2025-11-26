@@ -21,7 +21,7 @@ async function loadProblems() {
             const problems = await res.json();
             */
             const container = document.getElementById("problems-container");
-            container.innerHTML = ""; // töröljük a régit
+            container.innerHTML = ""; 
 
             problems.forEach(problem => {
             const div = document.createElement("div");
@@ -55,5 +55,5 @@ async function loadProblems() {
             console.error("Hiba a betöltésnél:", err);
         }
     }
-// betöltés oldal induláskor
+
 loadProblems();

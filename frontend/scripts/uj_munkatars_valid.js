@@ -1,17 +1,17 @@
 window.addEventListener("DOMContentLoaded", () => {
-// 🔹 Változók a form elemeihez
-const form = document.getElementById("userForm") || document.getElementById("form"); // signup vagy login form
-const userFName = document.getElementById("fname");         // csak signup
-const userLName = document.getElementById("lname");         // csak signup
-const postCode = document.getElementById("postcode");     // csak signup
-const city = document.getElementById("city");             // csak signup
-const address = document.getElementById("address");       // csak signup
+
+const form = document.getElementById("userForm") || document.getElementById("form"); 
+const userFName = document.getElementById("fname");         
+const userLName = document.getElementById("lname");         
+const postCode = document.getElementById("postcode");     
+const city = document.getElementById("city");             
+const address = document.getElementById("address");      
 const phone = document.getElementById("phone");
-const email = document.getElementById("email");                 // mindkettő
+const email = document.getElementById("email");                 
 const password = document.getElementById("password");  
-const status = document.getElementById("status");           // mindkettő
-const errorMessage = document.getElementById("error-message");         // csak signup
-// 🔹 Hibakereső függvények
+const status = document.getElementById("status");           
+const errorMessage = document.getElementById("error-message");        
+
 function getNewUserFormErrors(userfnameVal,usersnameVal,postcodeVal, cityVal,addressVal, phoneVal, emailVal, passwordVal, statusVal){
     let errors = [];
 
@@ -23,7 +23,7 @@ function getNewUserFormErrors(userfnameVal,usersnameVal,postcodeVal, cityVal,add
     return errors;
 }
 
-// 🔹 Submit listener
+
 if(form){
     form.addEventListener('submit', async (e) => {
         let errors = [];
@@ -80,7 +80,7 @@ if(form){
     });
 }
 
-// 🔹 Inputok figyelése hibajelzés eltávolítására
+
 const allInputs = [userFName,userLName,postCode,city, address, phone, email, password, status].filter(input => input != null);
 allInputs.forEach(input => {
     input.addEventListener("input", () => {

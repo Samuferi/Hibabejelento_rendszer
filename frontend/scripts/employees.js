@@ -1,6 +1,6 @@
 async function loadEmployees() {
         try {
-            const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); 
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
@@ -8,7 +8,7 @@ async function loadEmployees() {
             const res = await fetch("/api/admin/allemployees", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Authorization": `Bearer ${token}`,       
                 "Content-Type": "application/json"
             }
             }); 
@@ -18,7 +18,7 @@ async function loadEmployees() {
             const employees = await res.json();
 
            /*
-            const res = await fetch("/frontend/scripts/test_jsons/employees.json"); // Node.js backend endpoint
+            const res = await fetch("/frontend/scripts/test_jsons/employees.json"); 
             const employees = await res.json();
             */
             const container = document.getElementById("employeesTable");
@@ -29,6 +29,7 @@ async function loadEmployees() {
                     <th>Keresztnév</th>
                     <th>Email-cím</th>
                     <th>Munkakör</th>
+                    <th>Törlés</th>
                 </tr>
             `;
             employees.forEach(employee => {
@@ -91,5 +92,5 @@ async function deleteEmployee(e) {
         alert("Hiba történt a törléskor!");
     }
 }
-// betöltés oldal induláskor
+
 loadEmployees();

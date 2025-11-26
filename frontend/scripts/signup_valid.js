@@ -1,21 +1,21 @@
 window.addEventListener("DOMContentLoaded", () => {
-// 🔹 Változók a form elemeihez
-const form = document.getElementById("form") || document.getElementById("form"); // signup vagy login form
-const firstname = document.getElementById("firstname-input");         // csak signup
-const lastname = document.getElementById("lastname-input");           // csak signup
-const postnumber = document.getElementById("post-number-input");           // csak signup
+
+const form = document.getElementById("form") || document.getElementById("form"); 
+const firstname = document.getElementById("firstname-input");         
+const lastname = document.getElementById("lastname-input");           
+const postnumber = document.getElementById("post-number-input");          
 const town = document.getElementById("town-input");
 const address = document.getElementById("address-input");
 const phone = document.getElementById("phone-number-input");
-const email = document.getElementById("email-input");                 // mindkettő
-const password = document.getElementById("password-input");           // mindkettő
-const repeatPassword = document.getElementById("repeat-password-input"); // csak signup
+const email = document.getElementById("email-input");                 
+const password = document.getElementById("password-input");           
+const repeatPassword = document.getElementById("repeat-password-input"); 
 const errorMessage = document.getElementById("error-message");
-// ÚJ CHECKBOX VÁLTOZÓK
+
 const adatvedelmi = document.getElementById("adatvedelmi");
 const aszf = document.getElementById("aszf");
 
-// 🔹 Hibakereső függvények
+
 function getSignupFormErrors(firstnameVal, lastnameVal, postnumVal, townVal, addressVal, phoneVal, emailVal, passwordVal, repeatPasswordVal){
     let errors = [];
 
@@ -32,14 +32,14 @@ function getSignupFormErrors(firstnameVal, lastnameVal, postnumVal, townVal, add
 
     return errors;
 }
-// 🔹 Submit listener
+
 if(form){
     form.addEventListener('submit', async (e) => {
         let errors = [];
 
         errors = getSignupFormErrors(firstname.value, lastname.value, postnumber.value, town.value, address.value, phone.value, email.value, password.value, repeatPassword.value);
 
-        // kötelező chechbox ellenőrzés
+        
         if (adatvedelmi && !adatvedelmi.checked) {
             errors.push("El kell fogadnia az Adatvédelmi tájékoztatót!");
         }
@@ -88,7 +88,7 @@ if(form){
     });
 }
 
-// 🔹 Inputok figyelése hibajelzés eltávolítására
+
 const allInputs = [firstname, lastname, postnumber, town, address, phone, email, password, repeatPassword].filter(input => input != null);
 allInputs.forEach(input => {
     input.addEventListener("input", () => {

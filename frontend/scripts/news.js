@@ -1,6 +1,6 @@
 async function loadNews() {
         try {
-            const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); 
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
@@ -8,7 +8,7 @@ async function loadNews() {
              const res = await fetch("/api/news", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Authorization": `Bearer ${token}`,  
                 "Content-Type": "application/json"
             }
             }); 
@@ -21,7 +21,7 @@ async function loadNews() {
             const news = await res.json();*/
 
             const container = document.getElementById("news-container");
-            container.innerHTML = ""; // töröljük a régit
+            container.innerHTML = ""; 
 
             problems.forEach(article => {
             const div = document.createElement("div");
@@ -49,5 +49,5 @@ async function loadNews() {
             console.error("Hiba a betöltésnél:", err);
         }
     }
-// betöltés oldal induláskor
+
 loadNews();

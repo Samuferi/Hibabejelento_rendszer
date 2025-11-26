@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  // 1️⃣ Token beolvasása a localStorage-ból
+  
   const token = localStorage.getItem("token");
 
   if (!token) {
-    // Nincs token → vissza a login oldalra
+    
     alert("Kérlek, jelentkezz be!");
     window.location.href = "/login";
     return;
   }
 
   try {
-    // 2️⃣ Token elküldése a backendnek ellenőrzésre
+    
     const response = await fetch("/index/user", {
       method: "GET",
       headers: {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     });
 
-    // 3️⃣ Hibaellenőrzés
+    
     if (response.status === 401) {
       alert("Nincs jogosultság (nincs token). Jelentkezz be újra!");
       localStorage.removeItem("token");
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // 4️⃣ Ha minden rendben, lekérjük a felhasználó adatait
+    
     const data = await response.json();
     console.log("Felhasználói adatok:", data);
     const userRole = data.role;
