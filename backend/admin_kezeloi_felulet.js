@@ -109,7 +109,7 @@ router.get("/allemployees", authenticateToken, async (req, res) => {
         role AS status
       FROM users
       WHERE role IN ('admin', 'fonok', 'ugyintezo')
-      ORDER BY vezeteknev
+      ORDER BY vezeteknev ASC;
     `);
     //console.log(rows);
     res.json(rows);
