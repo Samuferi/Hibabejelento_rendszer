@@ -478,7 +478,7 @@ form > div{
     text-align: center;
     font-weight: 600;
 }
-/* új form rész */
+
 .wrapper{
     width: 400px;
     background: transparent;
@@ -845,7 +845,7 @@ div.incorrect select{
 }
 
 .profile-menu {
-    position: absolute; /* ha jobban tetszene úgy hogy fixen ott van írd át fix-re */
+    position: absolute; 
     top: 10px;
     right: 20px;
     z-index: 1000;

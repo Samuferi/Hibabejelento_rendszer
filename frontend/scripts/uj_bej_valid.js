@@ -2,7 +2,7 @@
 
 async function loadUserName() {
     try {
-        const token = localStorage.getItem("token"); // 🔸 Token lekérése
+        const token = localStorage.getItem("token"); 
         if (!token) {
             alert("⚠️ Nem vagy bejelentkezve!");
             return;
@@ -10,7 +10,7 @@ async function loadUserName() {
             const res = await fetch("/api/problems", {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+            "Authorization": `Bearer ${token}`,  
             "Content-Type": "application/json"
         }
         }); 
@@ -33,8 +33,8 @@ async function loadUserName() {
     }
 }
 window.addEventListener("DOMContentLoaded", () => {
-// 🔹 Változók a form elemeihez
-const form = document.getElementById("problemForm"); // signup vagy login form
+
+const form = document.getElementById("problemForm"); 
 const user=document.getElementById("user");
 const location=document.getElementById("location");
 const datetime=document.getElementById("datetime");
@@ -42,7 +42,7 @@ const images=document.getElementById("images");
 const description=document.getElementById("details");
 const errorMessage = document.getElementById("error-message");
 const id=document.getElementById("userid").value;
-// 🔹 Hibakereső függvények
+
 function getProblemFormErrors(locationVal, dateTimeVal, descriptionVal){
     let errors = [];
 
@@ -52,7 +52,7 @@ function getProblemFormErrors(locationVal, dateTimeVal, descriptionVal){
     return errors;
 }
 
-// 🔹 Submit listener
+
 if(form){
     form.addEventListener('submit', async (e) => {
         let errors = [];
@@ -65,7 +65,7 @@ if(form){
         }
         e.preventDefault();
 
-        const token = localStorage.getItem("token"); // 🔹 Token lekérése
+        const token = localStorage.getItem("token"); 
         if (!token) {
             alert("⚠️ Nem vagy bejelentkezve. Jelentkezz be újra!");
             return;
@@ -77,7 +77,7 @@ if(form){
         formData.append("datetime", datetime.value);
 
         if (images.files.length > 0) {
-        formData.append("images", images.files[0]); // "kep" = backend upload.single("kep")
+        formData.append("images", images.files[0]); 
         }
 
         try {
@@ -103,7 +103,7 @@ if(form){
     });
 }
 
-// 🔹 Inputok figyelése hibajelzés eltávolítására:
+
 const allInputs = [location, datetime, description].filter(input => input != null);
 allInputs.forEach(input => {
     input.addEventListener("input", () => {

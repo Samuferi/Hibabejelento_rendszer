@@ -93,28 +93,28 @@
             <form  id="problemForm">
             
             <div class="input-box">
-                <!-- Bejelentő -->
+            
             <input type="hidden" id="userid" name="userid" value="">
             <input type="text" id="user" name="user" value="" readonly><br>
             </div>
 
             <div class="input-box">
-            <!-- Helyszín -->
+            
             <label for="location">Bejelentés helye:</label>
             <input type="text" name="location" id="location" placeholder="Írd be a helyszínt..." ><br>
             </div>
             <div class="input-box">
-            <!-- Időpont -->
+            
             <label for="datetime">Időpont:</label>
             <input type="date" id="datetime" name="datetime" max="2025-10-08" ><br>
             </div>
             <div class="input-box">
-            <!-- Képek -->
+            
             <label for="images">Képek:</label>
             <input type="file" id="images" name="images" accept="image/*" multiple><br>
             </div>
             <div class="input-box">
-            <!-- Leírás -->
+            
             <label for="details">Részletes leírás:</label>
             <textarea id="details" name="details" placeholder="Írd le részletesen a problémát..." ></textarea><br>
             </div>
@@ -127,7 +127,7 @@
     <script>
         var today = new Date();
         var dd = today.getDate();
-        var mm = today.getMonth() + 1; //January is 0!
+        var mm = today.getMonth() + 1; 
         var yyyy = today.getFullYear();
 
         if (dd < 10) {

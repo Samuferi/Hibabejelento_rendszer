@@ -31,20 +31,20 @@ async function loadUserProps() {
 document.getElementById("profileDataForm").addEventListener("submit", function(e) {
     */
 window.addEventListener("DOMContentLoaded", () => {
-// 🔹 Változók a form elemeihez
-const form = document.getElementById("userForm") || document.getElementById("form"); // signup vagy login form
-const userFName = document.getElementById("fname");         // csak signup
-const userLName = document.getElementById("lname");         // csak signup
-const postCode = document.getElementById("postcode");     // csak signup
-const city = document.getElementById("city");             // csak signup
-const address = document.getElementById("address");       // csak signup
+
+const form = document.getElementById("userForm") || document.getElementById("form"); 
+const userFName = document.getElementById("fname");         
+const userLName = document.getElementById("lname");        
+const postCode = document.getElementById("postcode");     
+const city = document.getElementById("city");            
+const address = document.getElementById("address");       
 const phone = document.getElementById("phone");
-const email = document.getElementById("email");                 // mindkettő
-const currentPassword = document.getElementById("current-password");           // mindkettő
-const newPassword = document.getElementById("new-password"); // csak signup
+const email = document.getElementById("email");                 
+const currentPassword = document.getElementById("current-password");          
+const newPassword = document.getElementById("new-password"); 
 const errorMessage = document.getElementById("error-message");
 
-// 🔹 Hibakereső függvények
+
 function getUserFormErrors(userfnameVal,usersnameVal,postcodeVal, cityVal,addressVal, phoneVal, emailVal, currentPasswordVal, newPasswordVal){
     let errors = [];
     /* kibővíteni a jelenlegi adatok ellenőrzésével */
@@ -58,7 +58,7 @@ function getUserFormErrors(userfnameVal,usersnameVal,postcodeVal, cityVal,addres
 
     return errors;
 }
-// 🔹 Submit listener
+
 if(form){
     form.addEventListener('submit', async (e) => {
         let errors = [];
@@ -73,7 +73,7 @@ if(form){
 
         e.preventDefault();
 
-        const token = localStorage.getItem("token"); // 🔹 Token lekérése
+        const token = localStorage.getItem("token"); 
         if (!token) {
             alert("⚠️ Nem vagy bejelentkezve. Jelentkezz be újra!");
             return;
@@ -130,7 +130,7 @@ if(form){
     });
 }
 
-// 🔹 Inputok figyelése hibajelzés eltávolítására
+
 const allInputs = [userFName,userLName,postCode,city, address, phone, email, currentPassword, newPassword].filter(input => input != null);
 allInputs.forEach(input => {
     input.addEventListener("input", () => {
@@ -142,5 +142,5 @@ allInputs.forEach(input => {
 })
 }); 
 
-// betöltés oldal induláskor
+
 loadUserProps();

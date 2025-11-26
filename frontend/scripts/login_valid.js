@@ -1,11 +1,11 @@
 window.addEventListener("DOMContentLoaded", () => {
-    // 🔹 Változók a form elemeihez
-    const form = document.getElementById("form") || document.getElementById("form"); // signup vagy login form
-    const emailInput = document.getElementById("email-input");                 // mindkettő
-    const passwordInput = document.getElementById("password-input");           // mindkettő
+    
+    const form = document.getElementById("form") || document.getElementById("form"); 
+    const emailInput = document.getElementById("email-input");                 
+    const passwordInput = document.getElementById("password-input");           
     const errorMessage = document.getElementById("error-message");
 
-    // 🔹 Hibakereső függvények
+    
 
     function getLoginFormErrors(emailVal, passwordVal){
         let errors = [];
@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
         return errors;
     }
 
-    // 🔹 Submit listener
+    
     if(form){
         form.addEventListener('submit', async (e) => {
             let errors = [];
@@ -49,11 +49,11 @@ window.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
 
-                // 🔹 Token és felhasználó adatok tárolása
+                
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
 
-                // 🔹 Átirányítás az index.html-re
+                
                 window.location.href = '/index';
             } catch (err) {
                 console.error(err);
@@ -62,7 +62,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 🔹 Inputok figyelése hibajelzés eltávolítására
+    
     const allInputs = [emailInput, passwordInput].filter(input => input != null);
     allInputs.forEach(input => {
         input.addEventListener("input", () => {

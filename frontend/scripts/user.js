@@ -1,7 +1,7 @@
 async function loadUsers() {
     try {
-        // ⚠️ Backend API – ezt cseréld a saját végpontodra
-        const token = localStorage.getItem("token"); // 🔸 Token lekérése
+        
+        const token = localStorage.getItem("token"); 
         if (!token) {
             alert("⚠️ Nem vagy bejelentkezve!");
             return;
@@ -9,7 +9,7 @@ async function loadUsers() {
         const res = await fetch("/api/admin/users", {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+            "Authorization": `Bearer ${token}`,  
             "Content-Type": "application/json"
         }
         }); 
@@ -19,7 +19,7 @@ async function loadUsers() {
         const users = await res.json();
 
 
-        // Teszt JSON (ugyanúgy mint az employees.js-ben)
+        
         /*
         const res = await fetch("/frontend/scripts/test_jsons/users.json");
         const users = await res.json();
@@ -71,7 +71,7 @@ async function loadUsers() {
             container.appendChild(tr);
         });
 
-        // Törlés gomb esemény
+        
         document.querySelectorAll(".deleteUserBtn").forEach(btn => {
             btn.addEventListener("click", deleteUser);
         });
@@ -82,7 +82,7 @@ async function loadUsers() {
 }
 
 
-// 🔥 Felhasználó törlése
+
 async function deleteUser(e) {
     const id = e.target.dataset.id;
 

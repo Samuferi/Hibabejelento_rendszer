@@ -1,7 +1,7 @@
 async function loadProblems() {
         try {
 
-            const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); 
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
@@ -9,7 +9,7 @@ async function loadProblems() {
             const res = await fetch("/api/problems", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Authorization": `Bearer ${token}`,  
                 "Content-Type": "application/json"
             }
             }); 
@@ -19,11 +19,11 @@ async function loadProblems() {
             const problems = await res.json();
 
             /*
-            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); 
             const problems = await res.json();
             */
             const container = document.getElementById("problems-container");
-            container.innerHTML = ""; // töröljük a régit
+            container.innerHTML = ""; 
 
             problems.forEach(problem => {
             const div = document.createElement("div");
@@ -58,5 +58,5 @@ async function loadProblems() {
             console.error("Hiba a betöltésnél:", err);
         }
     }
-// betöltés oldal induláskor
+
 loadProblems();

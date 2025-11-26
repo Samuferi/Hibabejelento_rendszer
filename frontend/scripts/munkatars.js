@@ -1,6 +1,6 @@
 async function loadNewProblems() {
         try {
-            const token = localStorage.getItem("token"); // 🔸 Token lekérése
+            const token = localStorage.getItem("token"); 
             if (!token) {
                 alert("⚠️ Nem vagy bejelentkezve!");
                 return;
@@ -8,7 +8,7 @@ async function loadNewProblems() {
             const res = await fetch("/api/munkatars/allproblems", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Authorization": `Bearer ${token}`,  
                 "Content-Type": "application/json"
             }
             }); 
@@ -18,12 +18,12 @@ async function loadNewProblems() {
             const problems = await res.json();
             /*
 
-            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+            const res = await fetch("/frontend/scripts/test_jsons/problems.json"); 
             const problems = await res.json();
             */
 
             const container = document.getElementById("new-problems-container");
-            container.innerHTML = ""; // töröljük a régit
+            container.innerHTML = ""; 
             console.log(problems); 
             problems.forEach(problem => {
             const div = document.createElement("div");
@@ -65,7 +65,7 @@ async function loadNewProblems() {
         const forms = document.querySelectorAll('[id^="worker-form-"]'); 
         forms.forEach(form => { 
             form.addEventListener('submit', async (e) => {
-                //e.preventDefault(); // ne frissüljön az oldal
+                //e.preventDefault(); 
                 const problemId = e.target.querySelector('button').getAttribute('data-id');
                 const statusSelect = e.target.querySelector(`#status-${problemId}`);
                 const commentTextarea = e.target.querySelector(`#comment-${problemId}`);
@@ -77,7 +77,7 @@ async function loadNewProblems() {
                     return;
                 }
 
-                const token = localStorage.getItem("token"); //
+                const token = localStorage.getItem("token"); 
                 if (!token) {
                     alert("⚠️ Nem vagy bejelentkezve. Jelentkezz be újra!");
                     return;
@@ -88,7 +88,7 @@ async function loadNewProblems() {
                     comment: comment
                 };
                 try {
-                    const res = await fetch("/api/munkatars/assignproblems", { // Node.js backend endpoint
+                    const res = await fetch("/api/munkatars/assignproblems", { 
                         method: "POST",
                         headers: {
                             "Authorization": `Bearer ${token}`,
@@ -109,7 +109,7 @@ async function loadNewProblems() {
     }
 async function loadPrevProblems() {
     try {
-        const token = localStorage.getItem("token"); // 🔸 Token lekérése
+        const token = localStorage.getItem("token"); 
         if (!token) {
             alert("⚠️ Nem vagy bejelentkezve!");
             return;
@@ -117,7 +117,7 @@ async function loadPrevProblems() {
         const res = await fetch("/api/munkatars/resolvedproblems", {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+            "Authorization": `Bearer ${token}`,  
             "Content-Type": "application/json"
         }
         }); 
@@ -126,11 +126,11 @@ async function loadPrevProblems() {
         }
         const problems = await res.json();
         /*
-        const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+        const res = await fetch("/frontend/scripts/test_jsons/problems.json"); 
         const problems = await res.json();
         */
         const container = document.getElementById("prev-problems-container");
-        container.innerHTML = ""; // töröljük a régit
+        container.innerHTML = ""; 
 
         problems.forEach(problem => {
         const div = document.createElement("div");
@@ -162,6 +162,6 @@ async function loadPrevProblems() {
         console.error("Hiba a betöltésnél:", err);
     }
 }
-// betöltés oldal induláskor
+
 loadNewProblems();
 loadPrevProblems();

@@ -1,10 +1,10 @@
 window.addEventListener("DOMContentLoaded", () => {
-    // 🔹 Változók a form elemeihez
-    const form = document.getElementById("form") || document.getElementById("form"); // signup vagy login form
+    
+    const form = document.getElementById("form") || document.getElementById("form"); 
     const emailInput = document.getElementById("email-input");
     const errorMessage = document.getElementById("error-message");
 
-    // 🔹 Hibakereső függvények
+    
 
     function getFormErrors(emailVal){
         let errors = [];
@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
         return errors;
     }
 
-    // 🔹 Submit listener
+    
     if(form){
         form.addEventListener('submit', async (e) => {
             let errors = [];
@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     alert('Email elküldve a jelszó visszaállításhoz!');
                 }
                 
-                // 🔹 Átirányítás az index.html-re
+                
                 window.location.href = '/login';
             } catch (err) {
                 console.error(err);
@@ -55,7 +55,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 🔹 Inputok figyelése hibajelzés eltávolítására
+    
     const allInputs = [emailInput].filter(input => input != null);
     allInputs.forEach(input => {
         input.addEventListener("input", () => {

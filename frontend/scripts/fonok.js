@@ -6,7 +6,7 @@ async function loadProblems() {
             return;
         }
 
-        // --- Bejelentések backendről ---
+        
         const res = await fetch("/api/fonok/problems", {
             method: "GET",
             headers: {
@@ -17,7 +17,7 @@ async function loadProblems() {
         if (!res.ok) throw new Error("Hiba a problémák lekérésében!");
         const problems = await res.json();
 
-        // --- Dolgozók backendről ---
+        
         const res2 = await fetch("/api/fonok/employees", {
             method: "GET",
             headers: {
@@ -31,7 +31,7 @@ async function loadProblems() {
         const res3 = await fetch("/api/fonok/activeProblems", {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+                "Authorization": `Bearer ${token}`,  
                 "Content-Type": "application/json"
             }
         });
@@ -40,13 +40,13 @@ async function loadProblems() {
         }
         const activeProblems = await res3.json(); 
         /*
-        const res = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+        const res = await fetch("/frontend/scripts/test_jsons/problems.json"); 
         const problems = await res.json();
         */
         const res4 = await fetch("/api/fonok/resolvedProblems", {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${token}`,  // 🔸 Token küldése
+            "Authorization": `Bearer ${token}`,  
             "Content-Type": "application/json"
         }
         });
@@ -55,14 +55,14 @@ async function loadProblems() {
         }
         const resolvedProblems = await res4.json();
         /*
-        const res3 = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+        const res3 = await fetch("/frontend/scripts/test_jsons/problems.json"); 
         const activeProblems = await res3.json();
 
-        const res4 = await fetch("/frontend/scripts/test_jsons/problems.json"); // Node.js backend endpoint
+        const res4 = await fetch("/frontend/scripts/test_jsons/problems.json"); 
         const resolvedProblems = await res4.json();
         */
         const container = document.getElementById("problems-container");
-        container.innerHTML = ""; // töröljük a régit
+        container.innerHTML = ""; 
 
         problems.forEach(problem => {
             const div = document.createElement("div");
@@ -101,7 +101,7 @@ async function loadProblems() {
         });
 
         const container1 = document.getElementById("problems-container-1");
-        container1.innerHTML = ""; // töröljük a régit
+        container1.innerHTML = ""; 
         activeProblems.forEach(problem => {
             const div = document.createElement("div");
             div.classList.add("wrapper-inner-2");
@@ -123,7 +123,7 @@ async function loadProblems() {
         });
 
         const container2 = document.getElementById("problems-container-2");
-        container2.innerHTML = ""; // töröljük a régit
+        container2.innerHTML = ""; 
         resolvedProblems.forEach(problem => {
             const div = document.createElement("div");
             div.classList.add("wrapper-inner-2");
@@ -145,7 +145,7 @@ async function loadProblems() {
             container2.appendChild(div);
         });
 
-        // --- Eseménykezelők ---
+        
         document.querySelectorAll('[id^="worker-form-"]').forEach(form => {
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -172,7 +172,7 @@ async function loadProblems() {
                     if (!res.ok) throw new Error(data.error || "Hiba a hozzárendelésnél!");
 
                     alert(data.message || " Sikeresen hozzárendelted a dolgozót!");
-                    loadProblems(); // frissítjük a listát
+                    loadProblems(); 
                 } catch (error) {
                     console.error("Hiba:", error);
                     alert(" Hiba a dolgozó hozzárendelésénél!");
