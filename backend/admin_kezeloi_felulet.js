@@ -6,7 +6,7 @@ import { JWT_SECRET } from './config.js';
 
 const router = express.Router();
 
-// 🔹 Adatbázis kapcsolat (igazítsd a saját configodhoz)
+
 const db = await mysql.createPool({
   host: 'localhost',
   port: 3306,
@@ -23,7 +23,7 @@ async function authenticateToken(req, res, next) {
     if (!token) return res.status(401).json({ message: "Nincs token megadva!" });
 
     try {
-        const decoded = jwt.verify(token, JWT_SECRET); // ugyanaz a kulcs mint a login-nál
+        const decoded = jwt.verify(token, JWT_SECRET); 
         req.user = decoded;
         next();
     } catch (err) {
@@ -32,28 +32,28 @@ async function authenticateToken(req, res, next) {
     }
 }
 
-// 🔹 Új munkatárs felvétele (csak admin)
+
 router.post("/newemployee", authenticateToken, async (req, res) => {
   const { userf, userl, postcode, city, address, phone, email, password, status } = req.body;
   if (req.user.role !== "admin") {
     return res.status(403).json({ message: "Nincs jogosultság!" });
   }
   try {
-    // 🔸 1. Adatok ellenőrzése
+    
     if (!userf || !userl || !email || !password || !status) {
       return res.status(400).json({ message: "Hiányzó kötelező adatok!" });
     }
 
-    // 🔸 2. Email-ellenőrzés (ne legyen duplikált)
+    
     const [existing] = await db.query("SELECT user_id FROM users WHERE email = ?", [email]);
     if (existing.length > 0) {
       return res.status(409).json({ message: "Ez az email-cím már használatban van!" });
     }
 
-    // 🔸 3. Jelszó hashelése
+    
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // 🔸 4. Új felhasználó beszúrása
+    
     await db.query(
       `INSERT INTO users 
         (vezeteknev, keresztnev, irsz, telepules, cim, telefon, email, jelszo_hash, role)

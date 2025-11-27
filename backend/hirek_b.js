@@ -6,7 +6,7 @@ import { JWT_SECRET } from './config.js';
 
 const router = express.Router();
 
-// 🔹 MySQL kapcsolat
+
 const db = await mysql.createPool({
   host: 'localhost',
   port: 3306,
@@ -15,7 +15,7 @@ const db = await mysql.createPool({
   database: 'hibabejelento'
 });
 
-// 🔹 Middleware a token ellenőrzéséhez
+
 async function authenticateToken(req, res, next) {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
@@ -23,7 +23,7 @@ async function authenticateToken(req, res, next) {
     if (!token) return res.status(401).json({ message: "Nincs token megadva!" });
 
     try {
-        const decoded = jwt.verify(token, JWT_SECRET); // ugyanaz a kulcs mint a login-nál
+        const decoded = jwt.verify(token, JWT_SECRET); 
         req.user = decoded;
         next();
     } catch (err) {

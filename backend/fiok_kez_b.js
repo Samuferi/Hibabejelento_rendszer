@@ -13,7 +13,7 @@ const db = await mysql.createPool({
   password: 'Ocsi_2018',
   database: 'hibabejelento'
 });
-// 🔹 Token ellenőrző middleware
+
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
@@ -24,12 +24,12 @@ function authenticateToken(req, res, next) {
 
   jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ message: "Érvénytelen token!" });
-    req.user = user; // ide kerül: user_id, email, role
+    req.user = user; 
     next();
   });
 }
 
-// 🔹 Profil adatok módosítása
+
 router.post("/", authenticateToken, async (req, res) => {
   try {
     const userId = req.user.user_id;
@@ -38,7 +38,7 @@ router.post("/", authenticateToken, async (req, res) => {
       email, phone, currentPassword, newPassword
     } = req.body;
 
-    // 🔸 Frissítendő mezők gyűjtése
+   
     const updates = [];
     const params = [];
 
@@ -50,7 +50,7 @@ router.post("/", authenticateToken, async (req, res) => {
     if (email) { updates.push("email = ?"); params.push(email); }
     if (phone) { updates.push("telefon = ?"); params.push(phone); }
 
-    // 🔹 Ha jelszót is módosít
+    
     if (currentPassword && newPassword) {
       const [rows] = await db.query("SELECT jelszo_hash FROM users WHERE user_id = ?", [userId]);
       if (rows.length === 0) {
@@ -71,7 +71,7 @@ router.post("/", authenticateToken, async (req, res) => {
       return res.status(400).json({ message: "Nincs megadva módosítandó adat!" });
     }
 
-    // 🔸 Dinamikus UPDATE lekérdezés
+    
     const sql = `UPDATE users SET ${updates.join(", ")} WHERE user_id = ?`;
     params.push(userId);
 

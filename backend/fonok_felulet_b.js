@@ -7,7 +7,7 @@ import { JWT_SECRET } from "./config.js";
 const router = express.Router();
 router.use("/uploads", express.static("uploads"));
 
-// -------------------- ADATBÁZIS --------------------
+
 const db = await mysql.createPool({
   host: 'localhost',
   port: 3306,
@@ -32,7 +32,7 @@ async function authenticateToken(req, res, next) {
     }
 }
 
-// -------------------- BEJELENTÉSEK LEKÉRÉSE --------------------
+
 router.get("/problems", authenticateToken, async (req, res) => {
   try {
     const [problems] = await db.query(`
@@ -48,7 +48,7 @@ router.get("/problems", authenticateToken, async (req, res) => {
   }
 });
 
-// -------------------- DOLGOZÓK LEKÉRÉSE --------------------
+
 router.get("/employees", authenticateToken, async (req, res) => {
   try {
     const [employees] = await db.query(`
@@ -61,7 +61,7 @@ router.get("/employees", authenticateToken, async (req, res) => {
   }
 });
 
-// -------------------- DOLGOZÓ HOZZÁRENDELÉSE --------------------
+
 router.post("/assignWorker", authenticateToken, async (req, res) => {
   const { problemId, workerId } = req.body;
 
